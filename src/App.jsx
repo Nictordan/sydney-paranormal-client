@@ -5,7 +5,7 @@ import './App.css';
 import api from './config/api'
 import { Home } from './scenes/Home';
 import { Navbar } from './scenes/Navbar';
-import {SignUp} from './scenes/SignUp';
+import { SignUp } from './scenes/SignUp';
 
 
 const App = () => {
