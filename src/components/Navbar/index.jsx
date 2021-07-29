@@ -1,23 +1,14 @@
 import React from 'react'
 
-const navLinks = [
-  {
-    label: 'Home',
-    value: '/'
-  },
-  {
-    label: 'Sign Up',
-    value: '/sign-up'
-  }
-]
+import { navLinks } from '../../data/navLinks'
 
 export const Navbar = () => {
   return (
     <nav>
       <ul>
-        {navLinks.map(({ label, value }, index) => (
+        {navLinks.map(({ label, route }, index) => (
           <li key={index}>
-            <a href={value}>
+            <a href={route}>
               {label}
             </a>
           </li>

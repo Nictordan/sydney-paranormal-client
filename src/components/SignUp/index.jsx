@@ -1,14 +1,7 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 
 import api from '../../config/api'
-
-const SignUpForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 50%;
-`
+import { FormWrapper } from '../../styles/FormWrapper'
 
 export const SignUp = () => {
   const [user, setUser] = useState({
@@ -41,19 +34,24 @@ export const SignUp = () => {
     */
     api.post('/api/signup', {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Accept": "application/json"
       },
       username: userData.username,
       email: userData.email,
       password: userData.password,
       password_confirmation: userData.password_confirmation
     })
+      .then(({ data }) => {
+        localStorage.setItem('token', data.token)
+      })
   }
 
   return (
     <>
       <h1>Sign Up page</h1><br />
-      <SignUpForm onSubmit={handleSubmit}>
+
+      <FormWrapper onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input 
           type="text" 
@@ -93,7 +91,7 @@ export const SignUp = () => {
         />
         <br />
         <input type="submit" value="Sign Up" id="submit" />
-      </SignUpForm>
+      </FormWrapper>
     </>
   )
 }
