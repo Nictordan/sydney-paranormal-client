@@ -1,7 +1,11 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css';
 import api from './config/api'
+import { Home } from './scenes/Home';
+import { Navbar } from './scenes/Navbar';
+import {SignUp} from './scenes/SignUp';
 
 
 const App = () => {
@@ -21,9 +25,19 @@ const App = () => {
   }, [])
 
   return (
-    <div className="App">
-      Hello World
-    </div>
+    <Router>
+      <Navbar />
+
+      <Switch>
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+    
   )
 }
 
