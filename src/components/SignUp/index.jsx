@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-// import api from '../../config/api'
+import api from '../../config/api'
 
 const SignUpForm = styled.form`
   display: flex;
@@ -11,14 +11,15 @@ const SignUpForm = styled.form`
 `
 
 export const SignUp = () => {
-  const [newUser, setNewUser] = useState({
+  const [user, setUser] = useState({
     username: '',
     email: '',
     password: '',
+    password_confirmation: '',
   })
 
   const handleChange = (e) => {
-    setNewUser({
+    setUser({
       [e.target.id]: e.target.value
     })
   }
@@ -31,9 +32,22 @@ export const SignUp = () => {
       username: formData.get('username'),
       email: formData.get('email'),
       password: formData.get('password'),
+      password_confirmation: formData.get('password_confirmation'),
     }
-
     console.log(userData)
+
+    /*
+     IMPORTANT: fix password_confirmation bug (it's returning null)
+    */
+    api.post('/api/signup', {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      username: userData.username,
+      email: userData.email,
+      password: userData.password,
+      password_confirmation: userData.password_confirmation
+    })
   }
 
   return (
@@ -45,7 +59,7 @@ export const SignUp = () => {
           type="text" 
           name="username" 
           id="username" 
-          value={newUser.username} 
+          value={user.username} 
           onChange={handleChange} 
         />
         <br />
@@ -54,7 +68,7 @@ export const SignUp = () => {
           type="email" 
           name="email" 
           id="email" 
-          value={newUser.email} 
+          value={user.email} 
           onChange={handleChange} 
         />
         <br />
@@ -63,11 +77,22 @@ export const SignUp = () => {
           type="password" 
           name="password" 
           id="password" 
-          value={newUser.password} 
+          value={user.password} 
           onChange={handleChange} 
         />
         <br />
-        <input type="submit" value="Submit" id="submit" />
+        
+        {/* IMPORTANT: fix password_confirmation bug (it's returning null) */}
+        <label htmlFor="password-confirmation">Password Confirmation:</label>
+        <input 
+          type="password" 
+          name="password-confirmation" 
+          id="password-confirmation" 
+          value={user.password_confirmation} 
+          onChange={handleChange} 
+        />
+        <br />
+        <input type="submit" value="Sign Up" id="submit" />
       </SignUpForm>
     </>
   )

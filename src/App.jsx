@@ -1,29 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css';
-import api from './config/api'
-import { Home } from './scenes/Home';
-import { Navbar } from './scenes/Navbar';
-import { SignUp } from './scenes/SignUp';
+import { Home } from './components/Home';
+import { Navbar } from './components/Navbar';
+import { SignUp } from './components/SignUp';
 
 
 const App = () => {
-
-  useEffect(() => {
-    api.get("/").then(res => console.log('[RES]', res))
-
-    api.post('/api/signup', {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      username: "hello2",
-      email: "hello2@gmail.com",
-      password: "123456",
-      password_confirmation: "123456"
-    })
-  }, [])
-
   return (
     <Router>
       <Navbar />
@@ -36,8 +20,8 @@ const App = () => {
           <Home />
         </Route>
       </Switch>
+
     </Router>
-    
   )
 }
 
