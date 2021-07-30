@@ -2,24 +2,8 @@
 import { useEffect } from 'react';
 
 // MATERIAL-UI
-// Material UI Buttons
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-// Material UI Icons
-// import SaveIcon from '@material-ui/icons/Save'
-// import DeleteIcon from '@material-ui/icons/Delete'
-// import TextField from '@material-ui/core/TextField'
-// Material UI Responsive Design
-// import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
-// Material UI Navigation
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-// Material UI Typography
-import Typography from '@material-ui/core/Typography'
+import { 
+  Grid } from '@material-ui/core'
 
 // STYLING
 import './App.css';
@@ -30,10 +14,13 @@ import {
   // createMuiTheme
 } from '@material-ui/core/styles'
 
+// COMPONENTS
+import UserCard from './components/UserCard/UserCard'
+import StoriesCard from './components/StoriesCard/StoriesCard';
+import ParanormalMap from './components/ParanormalMap/ParanormalMap';
+import NavBar from './components/NavBar/NavBar';
 
 import api from './config/api'
-
-
 
 const App = () => {
 
@@ -52,65 +39,18 @@ const App = () => {
   }, [])
 
   return (
-    <ThemeProvider className="App">
-
-
-
+    <ThemeProvider>
       <div className="App">
-
-
-        {/* Navbar */}
-        <AppBar position="fixed">
-          <Toolbar className="nav">
-
-            {/* Hamburger Button  */}
-            <IconButton>
-              <MenuIcon />
-            </IconButton>
-
-            {/* Title */}
-            <Typography variant="h6">
-              Sydney Paranormal
-            </Typography>
-
-            <Button>
-              Login
-            </Button>
-
-          </Toolbar>
-        </AppBar>
-
-        <Grid container spacing={2} justify="center">
+        {/* NAVBAR */}
+        <NavBar />
+        {/* COMPONENTS */}
+        <Grid container justifyContent="center">
           {/* Welcome User */}
-          <Grid item xs={11}>
-            <Paper variant="outlined" style={{ height: 200, width: '100%' }}>
-              <Button>User Profile Link</Button>
-              <Typography variant="h5">Welcome, User</Typography>
-              <ButtonGroup variant="contained" color="secondary">
-                <Button>Add Pin</Button>
-                <Button>Manage Pin</Button>
-              </ButtonGroup>
-            </Paper>
-          </Grid>
-
+          <UserCard />
           {/* Stories You missed */}
-          <Grid item xs={11}>
-            <Paper style={{ width: '100%' }}>
-              <Typography variant="h5">Stories</Typography>
-              <Typography variant="h6">Story Title</Typography>
-              <Typography variant="subtitle1">By: @username</Typography>
-              <Typography variant="body1">Text goes here</Typography>
-              <Button variant="contained" color="primary">Read More</Button>
-            </Paper>
-          </Grid>
-
+          <StoriesCard />
           {/* Paranormal Activities */}
-          <Grid item xs={11}>
-            <Paper style={{ width: '100%' }}>
-              <Typography variant="h5">Paranormal Activity</Typography>
-            </Paper>
-          </Grid>
-
+          <ParanormalMap/>
         </Grid>
       </div>
     </ThemeProvider >
