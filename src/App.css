@@ -1,4 +1,17 @@
 .App {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
   text-align: center;
   font-size: 2em;
+  margin-top: 56px;
+  background-color: #282c34;
+}
+
+.nav {
+  justify-content: space-between;
+  align-content: space-between;
 }
