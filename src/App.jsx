@@ -1,29 +1,32 @@
-import { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import './App.css';
-import api from './config/api'
+import { Home } from './components/Home';
+import { Navbar } from './components/Navbar';
+import { LogIn } from './components/LogIn';
+import { SignUp } from './components/SignUp';
 
 
 const App = () => {
-
-  useEffect(() => {
-    api.get("/").then(res => console.log('[RES]', res))
-
-    api.post('/api/signup', {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      username: "hello2",
-      email: "hello2@gmail.com",
-      password: "123456",
-      password_confirmation: "123456"
-    })
-  }, [])
-
+  
   return (
-    <div className="App">
-      Hello World
-    </div>
+    <Router>
+      <Navbar />
+
+      <Switch>
+        <Route path="/log-in">
+          <LogIn />
+        </Route>
+        <Route path="/sign-up">
+          <SignUp />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+
+    </Router>
   )
 }
 
