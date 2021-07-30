@@ -1,0 +1,16 @@
+/* .UserCard {
+    margin-bottom: 200px;
+} */
+
+.UserCardPaper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.UserCardPaperHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
