@@ -1,5 +1,6 @@
-// React Components
-import { useEffect } from 'react';
+// React Components and Routing
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 // MATERIAL-UI
 import { 
@@ -19,26 +20,33 @@ import UserCard from './components/UserCard/UserCard'
 import StoriesCard from './components/StoriesCard/StoriesCard';
 import ParanormalMap from './components/ParanormalMap/ParanormalMap';
 import NavBar from './components/NavBar/NavBar';
+// Routing Components
+// import { Home } from './components/Home';
+// import { LogIn } from './components/LogIn';
+// import { SignUp } from './components/SignUp';
 
+// API
 import api from './config/api'
 
 const App = () => {
-
-  useEffect(() => {
-    api.get("/").then(res => console.log('[RES]', res))
-
-    api.post('/api/signup', {
-      headers: {
-        "Content-Type": "application/json"
-      },
-      username: "hello2",
-      email: "hello2@gmail.com",
-      password: "123456",
-      password_confirmation: "123456"
-    })
-  }, [])
-
+  
   return (
+//     <Router>
+//       <Navbar />
+
+//       <Switch>
+//         <Route path="/log-in">
+//           <LogIn />
+//         </Route>
+//         <Route path="/sign-up">
+//           <SignUp />
+//         </Route>
+//         <Route path="/">
+//           <Home />
+//         </Route>
+//       </Switch>
+//     </Router>
+
     <ThemeProvider>
       <div className="App">
         {/* NAVBAR */}
@@ -53,7 +61,7 @@ const App = () => {
           <ParanormalMap/>
         </Grid>
       </div>
-    </ThemeProvider >
+    </ThemeProvider>
   )
 }
 
