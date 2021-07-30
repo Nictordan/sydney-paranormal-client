@@ -1,3 +1,5 @@
+import './ParanormalMap.css'
+
 import { 
     Grid,
     Paper,

@@ -1,3 +1,5 @@
+import './StoriesCard.css'
+
 import {
     Grid,
     Paper,
@@ -8,7 +10,7 @@ import {
 const StoriesCard = () => {
     return (
         <Grid item xs={11}>
-            <Paper style={{ width: '100%' }}>
+            <Paper style={{ width: '100%', marginBottom: 20, padding:10 }}>
                 <Typography variant="h5">Stories</Typography>
                 <Typography variant="h6">Story Title</Typography>
                 <Typography variant="subtitle1">By: @username</Typography>

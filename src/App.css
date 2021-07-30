@@ -12,11 +12,6 @@
   background-color: #282c34;
 }
 
-.nav {
-  justify-content: space-between;
-  align-content: space-between;
-}
-
 UserCard {
   margin: 100px;
 }
