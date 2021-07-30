@@ -10,28 +10,22 @@ export const LogIn = () => {
   })
 
   const handleChange = (e) => {
-    setUser({
+    setUser((prevState) => ({
+      ...prevState,
       [e.target.id]: e.target.value
-    })
+    }))
   }
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData(e.target)
-
-    const userData = {
-      email: formData.get('email'),
-      password: formData.get('password'),
-    }
-    console.log(userData)
 
     api.post('/login', {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json" 
       },
-      email: userData.email,
-      password: userData.password
+      email: user.email,
+      password: user.password
     })
   }
 

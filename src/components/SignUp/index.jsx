@@ -8,43 +8,34 @@ export const SignUp = () => {
     username: '',
     email: '',
     password: '',
-    password_confirmation: '',
+    passwordConfirmation: '',
   })
 
   const handleChange = (e) => {
-    setUser({
+    setUser((prevState) => ({
+      ...prevState,
       [e.target.id]: e.target.value
-    })
+    }))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const formData = new FormData(e.target)
 
-    const userData = {
-      username: formData.get('username'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-      password_confirmation: formData.get('password_confirmation'),
-    }
-    console.log(userData)
-
-    /*
-     IMPORTANT: fix password_confirmation bug (it's returning null)
-    */
     api.post('/api/signup', {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      username: userData.username,
-      email: userData.email,
-      password: userData.password,
-      password_confirmation: userData.password_confirmation
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      password_confirmation: user.passwordConfirmation
     })
-      .then(({ data }) => {
-        localStorage.setItem('token', data.token)
-      })
+    .then(({ data }) => {
+      localStorage.setItem('token', data.token)
+    })
+
+    console.log(user)
   }
 
   return (
@@ -79,14 +70,12 @@ export const SignUp = () => {
           onChange={handleChange} 
         />
         <br />
-        
-        {/* IMPORTANT: fix password_confirmation bug (it's returning null) */}
-        <label htmlFor="password-confirmation">Password Confirmation:</label>
+        <label htmlFor="passwordConfirmation">Confirm Password:</label>
         <input 
           type="password" 
-          name="password-confirmation" 
-          id="password-confirmation" 
-          value={user.password_confirmation} 
+          name="passwordConfirmation" 
+          id="passwordConfirmation" 
+          value={user.passwordConfirmation} 
           onChange={handleChange} 
         />
         <br />
