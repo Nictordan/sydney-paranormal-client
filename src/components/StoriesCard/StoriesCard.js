@@ -15,7 +15,7 @@ const StoriesCard = () => {
                 <Typography variant="h6">Story Title</Typography>
                 <Typography variant="subtitle1">By: @username</Typography>
                 <Typography variant="body1">Text goes here</Typography>
-                <Button variant="contained" color="primary">Read More</Button>
+                <Button variant="contained" color="secondary">Read More</Button>
             </Paper>
         </Grid>
     )

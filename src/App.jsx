@@ -8,8 +8,9 @@ import './App.css';
 import {
   // makeStyles,
   ThemeProvider,
-  // createMuiTheme
+  createMuiTheme
 } from '@material-ui/core/styles'
+import { orange } from '@material-ui/core/colors'
 
 // COMPONENTS
 import NavBar from './components/NavBar/NavBar';
@@ -18,9 +19,26 @@ import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp';
 
+const theme = createMuiTheme({
+  typography: {
+    h2: {
+      fontSize: 36,
+      marginBottom: 15,
+    }
+  },
+  palette: {
+    primary: {
+      main: "#a2d84c",
+    },
+    secondary: {
+      main: orange[500],
+    }
+  }
+})
+
 const App = () => {
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <div className="App">
         {/* NAVBAR */}
         <NavBar />
