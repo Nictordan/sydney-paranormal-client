@@ -8,7 +8,7 @@ import './App.css';
 import {
   // makeStyles,
   ThemeProvider,
-  createMuiTheme
+  createTheme
 } from '@material-ui/core/styles'
 import { orange } from '@material-ui/core/colors'
 
@@ -19,13 +19,7 @@ import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp';
 
-const theme = createMuiTheme({
-  typography: {
-    h2: {
-      fontSize: 36,
-      marginBottom: 15,
-    }
-  },
+const theme = createTheme({
   palette: {
     primary: {
       main: "#a2d84c",
@@ -40,13 +34,13 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        {/* NAVBAR */}
-        <NavBar />
         {/* ROUTING */}
         <Router>
+          {/* NAVBAR */}
+          <NavBar />
           <Switch>
             <Route path="/log-in" component={LogIn} />
-            <Route path="/sign-up" component= {SignUp} />
+            <Route path="/sign-up" component={SignUp} />
             <Route path="/" component={Home} />
           </Switch>
         </Router>
