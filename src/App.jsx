@@ -17,7 +17,7 @@ import NavBar from './components/NavBar/NavBar';
 // Routing Components
 import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
-import { SignUp } from './components/SignUp';
+import { SignUp } from './components/SignUp/SignUp';
 
 const theme = createTheme({
   palette: {

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 
 import api from '../../config/api'
 import { FormWrapper } from '../../styles/FormWrapper'
 
 export const LogIn = () => {
+  const [redirect, setRedirect] = useState(false)
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -19,7 +21,7 @@ export const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    api.post('/login', {
+    api.post('/api/login', {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json" 
@@ -27,9 +29,17 @@ export const LogIn = () => {
       email: user.email,
       password: user.password
     })
+
+    setRedirect(true)
+
+    console.log('[LOGIN]', user)
   }
 
-   return (
+  if (redirect) {
+    return <Redirect to="/login" />
+  }
+
+  return (
     <>
       <h1>Log In page</h1><br />
 
