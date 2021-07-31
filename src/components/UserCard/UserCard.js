@@ -92,7 +92,7 @@ const UserCard = () => {
     return (
         <Grid className="UserCard" item xs={11}>
             <Paper 
-            center 
+   
             className="UserCardPaper" 
             variant="outlined" 
             style={{ height: 180, width: '100%', marginBottom: 20 }}>
