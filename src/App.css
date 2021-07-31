@@ -12,6 +12,11 @@
   background-color: #282c34;
 }
 
+a {
+  text-decoration: none;
+  color: #282c34;
+}
+
 UserCard {
   margin: 100px;
 }

@@ -8,6 +8,7 @@ import {
     Toolbar,
     Typography,
     Button,
+    ButtonGroup
 } from '@material-ui/core'
 
 import NavBarMenu from './NavBarMenu/NavBarMenu'
@@ -18,27 +19,29 @@ const NavBar = () => {
         <AppBar position="fixed">
             <Toolbar className="nav">
 
-
                 {/* Hamburger Button  */}
                 <NavBarMenu />
 
                 {/* Title */}
-                <Typography variant="h6">
-                    Sydney Paranormal
-                </Typography>
-
-                <Link to="/sign-up">
-                    <Button>
-                        Sign Up
-                    </Button>
+                <Link to="/">
+                    <Typography variant="h6">
+                        Sydney Paranormal
+                    </Typography>
                 </Link>
 
-                <Link to="/log-in">
-                    <Button>
-                        Login
-                    </Button>
-                </Link>
+                <ButtonGroup>
+                    <Link to="/sign-up">
+                        <Button color="secondary" variant="contained">
+                            Sign Up
+                        </Button>
+                    </Link>
 
+                    <Link to="/log-in">
+                        <Button color="secondary" variant="contained">
+                            Login
+                        </Button>
+                    </Link>
+                </ButtonGroup>
 
             </Toolbar>
         </AppBar>
