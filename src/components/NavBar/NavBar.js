@@ -23,24 +23,24 @@ const NavBar = () => {
                 <NavBarMenu />
 
                 {/* Title */}
-                <Link to="/">
-                    <Typography variant="h6">
+                <Typography variant="h6">
+                    <Link to="/">
                         Sydney Paranormal
-                    </Typography>
-                </Link>
+                    </Link>
+                </Typography>
 
-                <ButtonGroup>
-                    <Link to="/sign-up">
-                        <Button color="secondary" variant="contained">
+                {/* User login buttons */}
+                <ButtonGroup color="secondary" variant="contained">
+                    <Button>
+                        <Link to="/sign-up">
                             Sign Up
-                        </Button>
-                    </Link>
-
-                    <Link to="/log-in">
-                        <Button color="secondary" variant="contained">
+                        </Link>
+                    </Button>
+                    <Button>
+                        <Link to="/log-in">
                             Login
-                        </Button>
-                    </Link>
+                        </Link>
+                    </Button>
                 </ButtonGroup>
 
             </Toolbar>

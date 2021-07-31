@@ -32,9 +32,13 @@ export default function NavBarMenu() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <Link to="/">
-                    <MenuItem onClick={handleClose}>Home</MenuItem>
-                </Link>
+
+                <MenuItem onClick={handleClose}>
+                    <Link to="/">
+                        Home
+                    </Link>
+                </MenuItem>
+
                 <MenuItem onClick={handleClose}>My Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
             </Menu>
