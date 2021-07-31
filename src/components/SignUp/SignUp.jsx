@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 
 import api from '../../config/api'
 import { FormWrapper } from '../../styles/FormWrapper'
 
 export const SignUp = () => {
+  const [redirect, setRedirect] = useState(false)
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -31,11 +33,13 @@ export const SignUp = () => {
       password: user.password,
       password_confirmation: user.passwordConfirmation
     })
-    .then(({ data }) => {
-      localStorage.setItem('token', data.token)
-    })
+    setRedirect(true)
 
-    console.log(user)
+    console.log('[SIGN UP]', user)
+  }
+
+  if (redirect) {
+    return <Redirect to="/login" />
   }
 
   return (
