@@ -1,14 +1,18 @@
 import './NavBar.css'
 
-import { 
+import { Link } from 'react-router-dom'
+
+
+import {
     AppBar,
     Toolbar,
-    IconButton,
     Typography,
-    Button
- } from '@material-ui/core'
+    Button,
+    ButtonGroup
+} from '@material-ui/core'
 
- import MenuIcon from '@material-ui/icons/Menu'
+import NavBarMenu from './NavBarMenu/NavBarMenu'
+
 
 const NavBar = () => {
     return (
@@ -16,18 +20,28 @@ const NavBar = () => {
             <Toolbar className="nav">
 
                 {/* Hamburger Button  */}
-                <IconButton>
-                    <MenuIcon />
-                </IconButton>
+                <NavBarMenu />
 
                 {/* Title */}
-                <Typography variant="h6">
-                    Sydney Paranormal
-                </Typography>
+                <Link to="/">
+                    <Typography variant="h6">
+                        Sydney Paranormal
+                    </Typography>
+                </Link>
 
-                <Button>
-                    Login
-                </Button>
+                <ButtonGroup>
+                    <Link to="/sign-up">
+                        <Button color="secondary" variant="contained">
+                            Sign Up
+                        </Button>
+                    </Link>
+
+                    <Link to="/log-in">
+                        <Button color="secondary" variant="contained">
+                            Login
+                        </Button>
+                    </Link>
+                </ButtonGroup>
 
             </Toolbar>
         </AppBar>
