@@ -29,10 +29,13 @@ export const LogIn = () => {
       email: user.email,
       password: user.password
     })
+    .then(resp => {
+      console.log(resp.data.token)
+      localStorage.setItem("token", JSON.stringify(resp.data.token))
+    })
 
     setRedirect(true)
 
-    console.log('[LOGIN]', user)
   }
 
   if (redirect) {

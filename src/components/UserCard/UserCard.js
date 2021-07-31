@@ -11,7 +11,84 @@ import {
 
 import HomeIcon from '@material-ui/icons/Home'
 
+import api from '../../config/api'
+import { useState } from 'react'
+import { useEffect } from 'react'
+
+
+
+
+
 const UserCard = () => {
+
+    const [userName, setUserName] = useState('')
+    const [userId, setUserId] = useState(null)
+
+
+    const handleClick = (e) => {
+
+        e.preventDefault()
+
+        let token = JSON.parse(localStorage.getItem("token"))
+
+        api.get('/api/get_user', {
+            headers: {"Authorization" : `Bearer ${JSON.stringify(token)}`}
+        })
+        .then(res => {
+            if (res.data['loggedin']) {
+
+                api.post('/api/pins', {
+                    user_id: userId,
+                    title: "bunyip" 
+                })
+                .then(res => {
+                    console.log(res.data);
+                })
+                
+            }
+            
+        })
+          
+    }
+
+    useEffect(() => {
+        let token = JSON.parse(localStorage.getItem("token"))
+
+        api.get('/api/get_user', {
+            headers: {"Authorization" : `Bearer ${JSON.stringify(token)}`}
+        })
+        .then(res => {
+
+            if (res.data['loggedin']) {
+                setUserName(res.data['user_name'])
+                setUserId(res.data['user_id'])
+            }
+            
+        })
+    
+    }, [])
+    
+    
+    
+    
+    const Name = () => {
+    
+    
+        if (userName === '') {
+    
+            return null
+    
+        } else {
+    
+            return (
+                <Typography variant="h5">{'Welcome, '+ userName}</Typography>
+            )
+    
+        }
+        
+    }
+
+
     return (
         <Grid className="UserCard" item xs={11}>
             <Paper 
@@ -23,11 +100,12 @@ const UserCard = () => {
                     <IconButton>
                         <HomeIcon style={{ height: 25, width: 25 }} />
                     </IconButton>
-                    <Typography variant="h5">Welcome, User</Typography>
+                    <Name/>
+                    {/* <Typography variant="h5">Welcome, User</Typography> */}
                 </div>
                 <div>
                     <ButtonGroup variant="contained" color="primary">
-                        <Button>Add Pin</Button>
+                        <Button onClick={handleClick}>Add Pin</Button>
                         <Button>Manage Pin</Button>
                     </ButtonGroup>
                 </div>
