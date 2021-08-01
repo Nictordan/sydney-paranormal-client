@@ -39,6 +39,7 @@ const UserCard = () => {
 
                 api.post('/api/pins', {
                     user_id: userId,
+                    // this title of 'bunyip' is just a placeholder until pin input is sorted
                     title: "bunyip" 
                 })
                 .then(res => {
