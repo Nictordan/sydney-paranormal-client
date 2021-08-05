@@ -25,7 +25,10 @@ const NavBar = () => {
     let token = JSON.parse(localStorage.getItem("token"))
 
     api.get('/api/get_user', {
-        headers: {"Authorization" : `Bearer ${JSON.stringify(token)}`}
+        headers: {
+          "Authorization" : `Bearer ${JSON.stringify(token)}`,
+          "Access-Control-Allow-Origin": "*",
+        }
     })
     .then(res => {
   
