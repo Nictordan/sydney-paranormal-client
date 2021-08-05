@@ -12,23 +12,6 @@ import ParanormalMap from '../ParanormalMap/ParanormalMap';
 
 export const Home = () => {
 
-  // api.get('/user', {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   withCredentials: true
-  // })
-  
-  // const jwt = localStorage.getItem('token')
-  
-  // const incoming = {
-  //   headers: {
-  //     Authorization: `Bearer ${jwt}`
-  //   }
-  // }
-
-  // api.get('/', incoming).then(res => console.log(res))
-
   return (
     <Grid container justifyContent="center">
       {/* Welcome User */}

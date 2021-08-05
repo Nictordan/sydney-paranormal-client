@@ -39,7 +39,7 @@ export const LogIn = () => {
   }
 
   if (redirect) {
-    return <Redirect to="/login" />
+    return <Redirect to="/" />
   }
 
   return (

@@ -66,13 +66,13 @@ const NavBar = () => {
       return(
         <ButtonGroup color="secondary" variant="contained">
         <Button>
-          <Link to="/log-in">
+          <Link to="/login">
               Log In
           </Link>
         </Button>
 
         <Button>
-          <Link to="/sign-up">
+          <Link to="/signup">
               Sign Up
           </Link>
         </Button>

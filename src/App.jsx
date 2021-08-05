@@ -39,9 +39,9 @@ const App = () => {
           {/* NAVBAR */}
           <NavBar />
           <Switch>
-            <Route path="/log-in" component={LogIn} />
-            <Route path="/sign-up" component={SignUp} />
-            <Route path="/" component={Home} />
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={LogIn} />
+            <Route path="/signup" component={SignUp} />
           </Switch>
         </Router>
       </div>
