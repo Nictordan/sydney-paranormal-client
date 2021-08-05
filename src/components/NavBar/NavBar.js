@@ -27,6 +27,8 @@ const NavBar = () => {
     api.get('/api/get_user', {
         headers: {
           "Authorization" : `Bearer ${JSON.stringify(token)}`,
+          "Content-Type": "application/json",
+          "Accept": "application/json",
         }
     })
     .then(res => {
