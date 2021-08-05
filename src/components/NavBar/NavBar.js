@@ -36,7 +36,7 @@ const NavBar = () => {
         
     })
 
-  }, [])
+  }, [loggedIn])
 
 
 
