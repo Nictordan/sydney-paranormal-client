@@ -1,0 +1,95 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "David Habour's Female Doppelganger",
+        "description": "There's been a rumour that a hideous female version of the actor David Habour is hauting civilians near the water. Beware!</p>"
+      },
+      "geometry": {
+        "coordinates": [
+          151.200626,
+          -33.873438
+        ],
+        "type": "Point"
+      },
+      "id": "36f7cdb7c26cf67d1bcbcffd6124b6be"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "The Garden Ghost",
+        "description": "A strange ghost is haunting civilians at the botanic gardens!"
+      },
+      "geometry": {
+        "coordinates": [
+          151.217143,
+          -33.862598
+        ],
+        "type": "Point"
+      },
+      "id": "6728d17a8e9c1f891c99266ac5806d70"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "No More Kings!",
+        "description": "Haunted by its title, King street is being threatened by disatisfied supernatural queens."
+      },
+      "geometry": {
+        "coordinates": [
+          151.205933,
+          -33.868724
+        ],
+        "type": "Point"
+      },
+      "id": "95e66750c38635a67d56a142cc276693"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Hyde and Seek",
+        "description": "Civilians entering the Hyde park are vanishing out of nowhere! We need help to go looking for them!"
+      },
+      "geometry": {
+        "coordinates": [
+          151.210056,
+          -33.872255
+        ],
+        "type": "Point"
+      },
+      "id": "ae13dd3c31c1b14b7cfa4136d0536a06"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Pigs Dressed Like Goats",
+        "description": "Pigs at Goat Island have been acting strange."
+      },
+      "geometry": {
+        "coordinates": [
+          151.196355,
+          -33.852572
+        ],
+        "type": "Point"
+      },
+      "id": "cbae0647eb0d7c3642e3beda567faa14"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "The Giant Quokka",
+        "description": "A random description about the giant quokka."
+      },
+      "geometry": {
+        "coordinates": [
+          151.211494,
+          -33.861474
+        ],
+        "type": "Point"
+      },
+      "id": "de542a72bae88476692f47178987a4e0"
+    }
+  ],
+  "type": "FeatureCollection"
+}
