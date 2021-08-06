@@ -4,11 +4,13 @@ import { Redirect } from 'react-router-dom';
 import api from '../../config/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
-export const LogIn = () => {
+export const SignUp = () => {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({
+    username: '',
     email: '',
     password: '',
+    passwordConfirmation: '',
   });
 
   const handleChange = (e) => {
@@ -21,33 +23,40 @@ export const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    api
-      .post('/api/login', {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        email: user.email,
-        password: user.password,
-      })
-      .then((resp) => {
-        console.log(resp.data.token);
-        localStorage.setItem('token', JSON.stringify(resp.data.token));
-      });
-
+    api.post('/api/signup', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      password_confirmation: user.passwordConfirmation,
+    });
     setRedirect(true);
+
+    console.log('[SIGN UP]', user);
   };
 
   if (redirect) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   return (
     <>
-      <h1>Log In page</h1>
+      <h1>Sign Up page</h1>
       <br />
 
       <FormWrapper onSubmit={handleSubmit}>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={user.username}
+          onChange={handleChange}
+        />
+        <br />
         <label htmlFor="email">Email:</label>
         <input
           type="email"
@@ -66,7 +75,16 @@ export const LogIn = () => {
           onChange={handleChange}
         />
         <br />
-        <input type="submit" value="Log In" id="submit" />
+        <label htmlFor="passwordConfirmation">Confirm Password:</label>
+        <input
+          type="password"
+          name="passwordConfirmation"
+          id="passwordConfirmation"
+          value={user.passwordConfirmation}
+          onChange={handleChange}
+        />
+        <br />
+        <input type="submit" value="Sign Up" id="submit" />
       </FormWrapper>
     </>
   );

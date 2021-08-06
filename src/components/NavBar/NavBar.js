@@ -1,37 +1,86 @@
-import './NavBar.css'
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-import { 
-    AppBar,
-    Toolbar,
-    IconButton,
-    Typography,
-    Button
- } from '@material-ui/core'
+import api from '../../config/api';
 
- import MenuIcon from '@material-ui/icons/Menu'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  ButtonGroup,
+} from '@material-ui/core';
+
+import NavBarMenu from './NavBarMenu/NavBarMenu';
+import './NavBar.css';
 
 const NavBar = () => {
-    return (
-        <AppBar position="fixed">
-            <Toolbar className="nav">
+  const [loggedIn, setLoggedIn] = useState(false);
 
-                {/* Hamburger Button  */}
-                <IconButton>
-                    <MenuIcon />
-                </IconButton>
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem('token'));
 
-                {/* Title */}
-                <Typography variant="h6">
-                    Sydney Paranormal
-                </Typography>
+    api
+      .get('/api/get_user', {
+        headers: {
+          Authorization: `Bearer ${JSON.stringify(token)}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      })
+      .then((res) => {
+        if (res.data['loggedin']) {
+          setLoggedIn(true);
+          console.log(loggedIn);
+        }
+      });
+  }, [loggedIn]);
 
-                <Button>
-                    Login
-                </Button>
+  const handleLogOut = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
 
-            </Toolbar>
-        </AppBar>
-    )
-}
+  const LogInOrOut = () => {
+    if (loggedIn) {
+      return (
+        <ButtonGroup color="secondary" variant="contained">
+          <Button onClick={handleLogOut}>Log Out</Button>
+        </ButtonGroup>
+      );
+    } else {
+      return (
+        <ButtonGroup color="secondary" variant="contained">
+          <Button>
+            <Link to="/login">Log In</Link>
+          </Button>
 
-export default NavBar
+          <Button>
+            <Link to="/signup">Sign Up</Link>
+          </Button>
+        </ButtonGroup>
+      );
+    }
+  };
+
+  return (
+    <AppBar position="fixed">
+      <Toolbar className="nav">
+        {/* Hamburger Button  */}
+        <NavBarMenu />
+
+        {/* Title */}
+        <Typography variant="h6">
+          <Link to="/">Sydney Paranormal</Link>
+        </Typography>
+
+        {/* User login buttons */}
+
+        <LogInOrOut />
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default NavBar;
