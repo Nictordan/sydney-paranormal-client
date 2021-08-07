@@ -1,14 +1,14 @@
 export const navLinks = [
   {
     label: 'Home',
-    route: '/'
+    route: '/',
   },
   {
     label: 'Log In',
-    route: '/log-in'
+    route: '/log-in',
   },
   {
     label: 'Sign Up',
-    route: '/sign-up'
-  }
-]
+    route: '/sign-up',
+  },
+];

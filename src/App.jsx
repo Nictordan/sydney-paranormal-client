@@ -1,6 +1,6 @@
 // React Components and Routing
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // STYLING
 import './App.css';
@@ -8,9 +8,9 @@ import './App.css';
 import {
   // makeStyles,
   ThemeProvider,
-  createTheme
-} from '@material-ui/core/styles'
-import { orange } from '@material-ui/core/colors'
+  createTheme,
+} from '@material-ui/core/styles';
+import { orange } from '@material-ui/core/colors';
 
 // COMPONENTS
 import NavBar from './components/NavBar/NavBar';
@@ -22,13 +22,13 @@ import { SignUp } from './components/SignUp/SignUp';
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#a2d84c",
+      main: '#a2d84c',
     },
     secondary: {
       main: orange[500],
-    }
-  }
-})
+    },
+  },
+});
 
 const App = () => {
   return (
@@ -46,7 +46,7 @@ const App = () => {
         </Router>
       </div>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
