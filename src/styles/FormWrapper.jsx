@@ -5,4 +5,15 @@ export const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   max-width: 50%;
+
+  input {
+    height: 30px;
+  }
+
+  input[type=submit] {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
 `;
