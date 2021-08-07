@@ -2,14 +2,15 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core'; // eslint-disable-line import/no-webpack-loader-syntax
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
+import GeoJSON from 'geojson'
 
 import './ParanormalMap.css';
-import Pins from './Pins';
+import CreatePinForm from './CreatePinForm';
+import api from '../../config/api';
 import geoJson from '../../data/paranormal-locations.json';
 
-mapboxgl.workerClass =
-  // eslint-disable-next-line import/no-webpack-loader-syntax
-  require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // Ensure that you have the access token declared in the '.env' file.
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
@@ -26,9 +27,19 @@ const ParanormalMap = () => {
 
   const [lng, setLng] = useState(coordinates.sydney.longitude);
   const [lat, setLat] = useState(coordinates.sydney.latitude);
-  // This is the zoom level of the map. The smaller the number,
-  // the farther away it will be.
   const [zoom, setZoom] = useState(12);
+  const [markers, setMarkers] = useState([])
+
+  useEffect(() => {
+    api
+      .get('/locations')
+      .then(({ data }) => {
+        setMarkers(data)
+      })
+      .catch(({ message }) => console.log(message))
+    }, [])
+    
+  let pins = GeoJSON.parse(markers, {Point: ['latitude', 'longitude']})
 
   const markerImageUrl =
     'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png';
@@ -70,7 +81,7 @@ const ParanormalMap = () => {
           data: {
             // Every point registered is interpreted as a 'feature'
             type: 'FeatureCollection',
-            features: geoJson.features,
+            features: pins.features
           },
         });
 
@@ -137,7 +148,7 @@ const ParanormalMap = () => {
     <Grid item xs={11}>
       <Paper style={{ width: '100%' }}>
         <Typography variant="h5">Paranormal Activity</Typography>
-        <Pins />
+        <CreatePinForm />
 
         {/* This div must contain a 'ref' prop with the mapContainer
         so that the map gets rendered. */}

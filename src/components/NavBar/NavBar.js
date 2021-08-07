@@ -24,9 +24,9 @@ const NavBar = () => {
     api
       .get('/api/get_user', {
         headers: {
-          Authorization: `Bearer ${JSON.stringify(token)}`,
+          'Authorization': `Bearer ${JSON.stringify(token)}`,
           'Content-Type': 'application/json',
-          Accept: 'application/json',
+          'Accept': 'application/json',
         },
       })
       .then((res) => {
@@ -67,6 +67,7 @@ const NavBar = () => {
   return (
     <AppBar position="fixed">
       <Toolbar className="nav">
+
         {/* Hamburger Button  */}
         <NavBarMenu />
 
@@ -76,8 +77,8 @@ const NavBar = () => {
         </Typography>
 
         {/* User login buttons */}
-
         <LogInOrOut />
+        
       </Toolbar>
     </AppBar>
   );

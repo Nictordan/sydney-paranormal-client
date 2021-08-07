@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import api from '../../config/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
-const Pins = () => {
+const CreatePinForm = () => {
   const initialValue = {
     title: '',
     description: '',
@@ -11,6 +11,7 @@ const Pins = () => {
     state: '',
     country: '',
   }
+  
   const [pin, setPin] = useState(initialValue)
 
   const handleChange = (e) => {
@@ -108,4 +109,4 @@ const Pins = () => {
   );
 };
 
-export default Pins;
+export default CreatePinForm;

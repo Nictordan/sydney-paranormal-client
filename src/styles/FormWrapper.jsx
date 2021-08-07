@@ -5,6 +5,7 @@ export const FormWrapper = styled.form`
   flex-direction: column;
   justify-content: center;
   max-width: 50%;
+  font-size: 0.6em;
 
   input {
     height: 30px;
