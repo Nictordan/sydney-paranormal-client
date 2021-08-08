@@ -1,8 +1,16 @@
+import './LogIn.css'
+
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import api from '../../config/api';
 import { FormWrapper } from '../../styles/FormWrapper';
+
+import {
+  TextField,
+  Typography,
+  Button,
+} from '@material-ui/core';
 
 export const LogIn = () => {
   const [redirect, setRedirect] = useState(false);
@@ -44,29 +52,44 @@ export const LogIn = () => {
 
   return (
     <>
-      <h1>Log In page</h1>
+      <Typography variant="h2" color="secondary">
+        Log In Page
+      </Typography>
       <br />
 
       <FormWrapper onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
+
+        <TextField
+          className="textfield"
+          variant="filled"
+          label="Email"
+          placeholder="name@example.com"
+          color="secondary"
           type="email"
           name="email"
           id="email"
           value={user.email}
           onChange={handleChange}
         />
+
         <br />
-        <label htmlFor="password">Password:</label>
-        <input
+
+        <TextField
+          className="textfield"
+          variant="filled"
+          label="Password"
+          placeholder="name@example.com"
+          color="secondary"
           type="password"
           name="password"
           id="password"
           value={user.password}
           onChange={handleChange}
         />
+
         <br />
-        <input type="submit" value="Log In" id="submit" />
+
+        <Button type="submit" value="Log In" id="submit" variant="contained" color="secondary" >Log In</Button>
       </FormWrapper>
     </>
   );
