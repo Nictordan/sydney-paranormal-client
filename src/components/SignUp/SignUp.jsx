@@ -68,7 +68,7 @@ export const SignUp = () => {
           onChange={handleChange}
           label="Username"
           variant="filled"
-          color="secondary"
+          color="primary"
         />
         <br />
         {/* EMAIL */}
@@ -81,7 +81,7 @@ export const SignUp = () => {
           className="textfield"
           label="Email"
           variant="filled"
-          color="secondary"
+          color="primary"
           placeholder="name@example.com"
         />
         <br />
@@ -95,7 +95,7 @@ export const SignUp = () => {
           className="textfield"
           label="Password"
           variant="filled"
-          color="secondary"
+          color="primary"
         />
         <br />
         {/* PASSWORD CONFIRMATION */}
@@ -108,7 +108,7 @@ export const SignUp = () => {
           className="textfield"
           label="Confirm Password"
           variant="filled"
-          color="secondary"
+          color="primary"
         />
         <br />
         <Button type="submit" value="Sign Up" id="submit" variant="contained" color="secondary">Sign Up</Button>

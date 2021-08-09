@@ -2,3 +2,11 @@
   justify-content: space-between;
   align-content: space-between;
 }
+
+.app-header {
+  color: #fff;
+}
+
+.app-header:hover {
+  color: #a2d84c
+}

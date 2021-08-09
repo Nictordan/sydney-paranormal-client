@@ -6,11 +6,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 // Material UI Styling
 import {
-  // makeStyles,
   ThemeProvider,
-  createTheme,
 } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
 
 // COMPONENTS
 import NavBar from './components/NavBar/NavBar';
@@ -19,16 +16,9 @@ import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp/SignUp';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#a2d84c',
-    },
-    secondary: {
-      main: orange[500],
-    },
-  },
-});
+import { theme } from './styles/materialUITheme'
+
+
 
 const App = () => {
   return (
