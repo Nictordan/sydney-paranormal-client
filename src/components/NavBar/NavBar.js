@@ -32,7 +32,7 @@ const NavBar = () => {
       .then((res) => {
         if (res.data['loggedin']) {
           setLoggedIn(true);
-          console.log(loggedIn);
+          console.log('LOGGED IN', loggedIn);
         }
       });
   }, [loggedIn]);
@@ -67,7 +67,6 @@ const NavBar = () => {
   return (
     <AppBar position="fixed">
       <Toolbar className="nav">
-
         {/* Hamburger Button  */}
         <NavBarMenu />
 
@@ -78,7 +77,6 @@ const NavBar = () => {
 
         {/* User login buttons */}
         <LogInOrOut />
-        
       </Toolbar>
     </AppBar>
   );

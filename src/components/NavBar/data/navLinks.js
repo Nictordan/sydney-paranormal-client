@@ -1,4 +1,4 @@
-export const navLinks = [
+const navLinks = [
   {
     label: 'Home',
     route: '/',
@@ -12,3 +12,5 @@ export const navLinks = [
     route: '/sign-up',
   },
 ];
+
+export default navLinks;

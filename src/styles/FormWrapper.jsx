@@ -16,5 +16,4 @@ export const FormWrapper = styled.form`
       cursor: pointer;
     }
   }
-
 `;

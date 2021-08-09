@@ -1,5 +1,5 @@
-import './UserCard.css';
-
+import React, { useState, useEffect } from 'react'
+import HomeIcon from '@material-ui/icons/Home';
 import {
   Grid,
   Paper,
@@ -9,46 +9,25 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import HomeIcon from '@material-ui/icons/Home';
-
+import './UserCard.css';
 import api from '../../config/api';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import PinModal from '../CreatePin/PinModal';
 
 const UserCard = () => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(null);
+  const [showModal, setShowModal] = useState(false)
 
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    let token = JSON.parse(localStorage.getItem('token'));
-
-    api
-      .get('/api/get_user', {
-        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
-      })
-      .then((res) => {
-        if (res.data['loggedin']) {
-          api
-            .post('/api/pins', {
-              user_id: userId,
-              // this title of 'bunyip' is just a placeholder until pin input is sorted
-              title: 'bunyip',
-            })
-            .then((res) => {
-              console.log(res.data);
-            });
-        }
-      });
-  };
+  const handleCreatePin = () => {
+    setShowModal(prevState => !prevState)
+  }
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem('token'));
 
     api
       .get('/api/get_user', {
-        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
+        headers: { 'Authorization': `Bearer ${JSON.stringify(token)}` },
       })
       .then((res) => {
         if (res.data['loggedin']) {
@@ -62,7 +41,11 @@ const UserCard = () => {
     if (userName === '') {
       return null;
     } else {
-      return <Typography variant="h5">{'Welcome, ' + userName}</Typography>;
+      return (
+        <Typography variant="h5">
+          {`Welcome,  @${userName}`}
+        </Typography>
+      ); 
     }
   };
 
@@ -78,12 +61,13 @@ const UserCard = () => {
             <HomeIcon style={{ height: 25, width: 25 }} />
           </IconButton>
           <Name />
-          {/* <Typography variant="h5">Welcome, User</Typography> */}
         </div>
         <div>
           <ButtonGroup variant="contained" color="primary">
-            <Button onClick={handleClick}>Add Pin</Button>
-            <Button>Manage Pin</Button>
+            <Button onClick={handleCreatePin}>Add Pin</Button>
+            <Button>Manage Pins</Button>
+
+            <PinModal showModal={showModal} setShowModal={setShowModal}/>
           </ButtonGroup>
         </div>
       </Paper>

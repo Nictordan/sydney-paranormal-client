@@ -12,7 +12,7 @@ export const SignUp = () => {
     password: '',
     passwordConfirmation: '',
   });
-  
+
   const handleChange = (e) => {
     setUser((prevState) => ({
       ...prevState,
@@ -26,7 +26,7 @@ export const SignUp = () => {
     api.post('/api/signup', {
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       username: user.username,
       email: user.email,
@@ -34,12 +34,10 @@ export const SignUp = () => {
       password_confirmation: user.passwordConfirmation,
     });
     setRedirect(true);
-
-    console.log('[SIGN UP]', user);
   };
 
   if (redirect) {
-    return <Redirect to="/login" />;
+    setTimeout(() => <Redirect to="/login" />, 1000)
   }
 
   return (

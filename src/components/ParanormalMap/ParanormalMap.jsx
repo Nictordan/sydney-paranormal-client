@@ -1,24 +1,24 @@
+/* eslint-disable import/no-webpack-loader-syntax */
 import React, { useRef, useEffect, useState } from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core'; // eslint-disable-line import/no-webpack-loader-syntax
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import 'mapbox-gl/dist/mapbox-gl.css';
-import GeoJSON from 'geojson'
+import { Grid, Paper, Typography } from '@material-ui/core';
+import mapboxgl from '!mapbox-gl';
+import GeoJSON from 'geojson';
 
 import './ParanormalMap.css';
-import CreatePinForm from './CreatePinForm';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../config/api';
-// import geoJson from '../../data/paranormal-locations.json';
+import CreatePin from '../CreatePin/CreatePinForm';
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+mapboxgl.workerClass =
+  require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
-// Ensure that you have the access token declared in the '.env' file.
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
 const ParanormalMap = () => {
   const mapContainer = useRef(null);
 
-  const markerImageUrl = 'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png';
+  const markerImageUrl =
+    'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png';
 
   const coordinates = {
     sydney: {
@@ -30,20 +30,17 @@ const ParanormalMap = () => {
   const [lng, setLng] = useState(coordinates.sydney.longitude);
   const [lat, setLat] = useState(coordinates.sydney.latitude);
   const [zoom, setZoom] = useState(12);
-  const [markers, setMarkers] = useState([])
-  
-  useEffect(() => {
-    api
-      .get('/locations')
-      .then(({ data }) => {
-        console.log('DATA', data)
-        setMarkers(data)
-      })
-  }, [])
-    
-  let pins = GeoJSON.parse(markers, {Point: ['latitude', 'longitude']})
+  const [locationsFromApi, setLocationsFromApi] = useState([]);
 
-  console.log('PINS', pins.features)
+  useEffect(() => {
+    api.get('/locations').then(({ data }) => {
+      setLocationsFromApi(data);
+    });
+  }, []);
+
+  const pins = GeoJSON.parse(locationsFromApi, {
+    Point: ['latitude', 'longitude'],
+  });
 
   // Initialize map when component mounts
   useEffect(() => {
@@ -67,12 +64,12 @@ const ParanormalMap = () => {
         if (error) throw error;
 
         map.addImage('custom-marker', image);
-   
+
         map.addSource('locations', {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
-            features: pins.features
+            features: pins.features,
           },
         });
 
@@ -114,13 +111,13 @@ const ParanormalMap = () => {
 
     // Clean up when components unmounts
     return () => map.remove();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [locationsFromApi]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Grid item xs={11}>
       <Paper style={{ width: '100%' }}>
-        <Typography variant="h5">Paranormal Activity</Typography>
-        <CreatePinForm />
+        <Typography variant="h5">Paranormal Activities</Typography>
+        <CreatePin />
 
         {/* This div must contain a 'ref' prop with the mapContainer
         so that the map gets rendered. */}
