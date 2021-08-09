@@ -1,8 +1,16 @@
+import './SignUp.css'
+
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import api from '../../config/api';
 import { FormWrapper } from '../../styles/FormWrapper';
+
+import {
+  TextField,
+  Typography,
+  Button
+} from '@material-ui/core'
 
 export const SignUp = () => {
   const [redirect, setRedirect] = useState(false);
@@ -44,47 +52,66 @@ export const SignUp = () => {
 
   return (
     <>
-      <h1>Sign Up page</h1>
+      <Typography variant="h2" color="secondary">
+        Sign Up
+      </Typography>
       <br />
 
       <FormWrapper onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
+        {/* USERNAME */}
+        <TextField
+          className="textfield"
           type="text"
           name="username"
           id="username"
           value={user.username}
           onChange={handleChange}
+          label="Username"
+          variant="filled"
+          color="primary"
         />
         <br />
-        <label htmlFor="email">Email:</label>
-        <input
+        {/* EMAIL */}
+        <TextField
           type="email"
           name="email"
           id="email"
           value={user.email}
           onChange={handleChange}
+          className="textfield"
+          label="Email"
+          variant="filled"
+          color="primary"
+          placeholder="name@example.com"
         />
         <br />
-        <label htmlFor="password">Password:</label>
-        <input
+        {/* PASSWORD */}
+        <TextField
           type="password"
           name="password"
           id="password"
           value={user.password}
           onChange={handleChange}
+          className="textfield"
+          label="Password"
+          variant="filled"
+          color="primary"
         />
         <br />
-        <label htmlFor="passwordConfirmation">Confirm Password:</label>
-        <input
+        {/* PASSWORD CONFIRMATION */}
+        <TextField
           type="password"
           name="passwordConfirmation"
           id="passwordConfirmation"
           value={user.passwordConfirmation}
           onChange={handleChange}
+          className="textfield"
+          label="Confirm Password"
+          variant="filled"
+          color="primary"
         />
         <br />
-        <input type="submit" value="Sign Up" id="submit" />
+        <Button type="submit" value="Sign Up" id="submit" variant="contained" color="secondary">Sign Up</Button>
       </FormWrapper>
     </>
   );

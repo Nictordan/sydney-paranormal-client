@@ -72,7 +72,7 @@ const NavBar = () => {
 
         {/* Title */}
         <Typography variant="h6">
-          <Link to="/">Sydney Paranormal</Link>
+          <Link className="app-header" to="/">Sydney Paranormal</Link>
         </Typography>
 
         {/* User login buttons */}
