@@ -14,6 +14,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import api from '../../config/api';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import Modal from 'react-modal';
+
+import Pin from '../Pin/Pin';
 
 const UserCard = () => {
   const [userName, setUserName] = useState('');
@@ -34,7 +37,7 @@ const UserCard = () => {
             .post('/api/pins', {
               user_id: userId,
               // this title of 'bunyip' is just a placeholder until pin input is sorted
-              title: 'bunyip',
+              title: 'zombie',
             })
             .then((res) => {
               console.log(res.data);
@@ -66,6 +69,7 @@ const UserCard = () => {
     }
   };
 
+  Modal.setAppElement('body')
   return (
     <Grid className="UserCard" item xs={11}>
       <Paper
@@ -86,7 +90,19 @@ const UserCard = () => {
             <Button>Manage Pin</Button>
           </ButtonGroup>
         </div>
+
       </Paper>
+
+
+      <Modal
+          isOpen={false}
+          className='modal'
+        //   overlayClassName='overlayModal'
+          style={{height:'100%'}}
+        >
+        <Pin userId={userId}/>
+      </Modal>
+
     </Grid>
   );
 };
