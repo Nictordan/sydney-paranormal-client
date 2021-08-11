@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 import api from '../../config/api';
 
 
@@ -16,10 +16,10 @@ const Comments = (props) => {
 
         let listItems = null
         listItems = props.comments.map((comment) =>
-            <li style={{width: '100%', height: 'auto', right: '10px'}} className="note" key={comment.id}>
-                <Typography className="" variant="subtitle1">{comment.text}</Typography>
+            <li style={{ height: 'auto', right: '10px', padding: "4px", margin: '10px'}} className="note" key={comment.id}>
+                <Typography className="" style={{ textAlign:"left", fontSize:"12px"}} variant="subtitle1">{comment.user_name + ' says:'}</Typography>
+                <Typography className="" style={{ textAlign:"left"}} variant="subtitle1">{comment.text}</Typography>
                 <Typography className="" variant="caption">{comment.created_at}</Typography>
-                <Typography className="" variant="caption">{comment.user_name}</Typography>
             </li>
         )
         console.log(props.comments)
@@ -53,12 +53,10 @@ const Note = (props) => {
 
 
     const handleChange = (e) => {
-        console.log(e.target)
         setNewCommentText(e.target.value)
     }
 
     const handleSubmit = (e) => {
-        console.log(props.userId)
         e.preventDefault();
         let token = JSON.parse(localStorage.getItem('token'));
 
@@ -68,17 +66,12 @@ const Note = (props) => {
                 text: newCommentText,
                 user_id: props.userId,
                 note_id: note["id"]
-                // date:
             }
         })
-        .then(res => {
-            // console.log(res.data.comments)
-            // setComments(res.data.comments)
-        }).catch(err => console.error(err))
+        .catch(err => console.error(err))
         .then(
             setNewCommentText('')
         )
-
     }
 
 
@@ -91,7 +84,7 @@ const Note = (props) => {
                         {note.title}
                     </Typography>
 
-                    <Typography >
+                    <Typography style={{ marginBottom: 20, padding: 30, textAlign:"left" }}>
                         {note.description}
                     </Typography>
 
@@ -101,14 +94,14 @@ const Note = (props) => {
                             Comments
                         </Typography>
                         <Comments noteOpen={props.noteOpen} comments={comments}/>
-                    </Paper>
+                        <form onSubmit={handleSubmit} style={{alignItems:'center', display:'flex', flexDirection:'column'}}>
+                            <textarea rows="7" cols="35" value={newCommentText} onChange={handleChange} ></textarea>
 
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                        <input type="text" value={newCommentText} onChange={handleChange} />
-                        </label>
-                        <input type="submit" value="Submit" />
-                    </form>
+                            <Button style={{width: '40%', margin: '10px'}} variant="contained" color="secondary" type="submit" value="Submit">
+                                Submit
+                            </Button>
+                        </form>
+                    </Paper>
                 </Paper>
             </>
         )
@@ -119,10 +112,3 @@ const Note = (props) => {
 
 export default Note;
 
-
-// t.text "text"
-// t.date "date"
-// t.datetime "created_at", precision: 6, null: false
-// t.datetime "updated_at", precision: 6, null: false
-// t.bigint "note_id"
-// t.bigint "user_id"

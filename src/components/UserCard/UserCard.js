@@ -71,39 +71,33 @@ const UserCard = () => {
 
   Modal.setAppElement('body')
   return (
-    <Grid className="UserCard" item xs={11}>
-      <Paper
-        className="UserCardPaper"
-        variant="outlined"
-        style={{ height: 180, width: '100%', marginBottom: 20 }}
-      >
-        <div className="UserCardPaperHeader">
-          <IconButton>
-            <HomeIcon style={{ height: 25, width: 25 }} />
-          </IconButton>
-          <Name />
-          {/* <Typography variant="h5">Welcome, User</Typography> */}
-        </div>
-        <div>
-          <ButtonGroup variant="contained" color="primary">
-            <Button onClick={handleClick}>Add Pin</Button>
-            <Button>Manage Pin</Button>
-          </ButtonGroup>
-        </div>
-
-      </Paper>
-
-
-      <Modal
-          isOpen={false}
-          className='modal'
-        //   overlayClassName='overlayModal'
-          style={{height:'100%'}}
+    <>
+      <Grid className="UserCard" item xs={11}>
+        <Paper
+          className="UserCardPaper"
+          variant="outlined"
+          style={{ height: 180, width: '100%', marginBottom: 20 }}
         >
-        <Pin userId={userId}/>
-      </Modal>
+          <div className="UserCardPaperHeader">
+            <IconButton>
+              <HomeIcon style={{ height: 25, width: 25 }} />
+            </IconButton>
+            <Name />
+            {/* <Typography variant="h5">Welcome, User</Typography> */}
+          </div>
+          <div>
+            <ButtonGroup variant="contained" color="primary">
+              <Button onClick={handleClick}>Add Pin</Button>
+              <Button>Manage Pin</Button>
+            </ButtonGroup>
+          </div>
 
-    </Grid>
+        </Paper>
+      </Grid>
+
+      <Pin userId={userId}/>
+
+    </>
   );
 };
 
