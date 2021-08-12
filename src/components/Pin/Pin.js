@@ -61,7 +61,7 @@ const NotesList = (props) => {
 
   useEffect(() => {
     api
-      .get('/api/pins/' + props.pinId)
+      .get('/api/pin_notes/' + props.pinId)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setNoteList(res.data);
@@ -154,7 +154,7 @@ const NotesList = (props) => {
 };
 
 const Pin = (props) => {
-  const [pinId, setPinId] = useState(null);
+  const [pinId, setPinId] = useState(1);
 
   // This is just set to 1 for testing purposes
   useEffect(() => {
