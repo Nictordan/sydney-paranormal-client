@@ -7,7 +7,7 @@ import { Grid, Paper, Typography } from '@material-ui/core'; // eslint-disable-l
 import geoJson from '../../data/paranormal-locations.json';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+// mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // Ensure that you have the access token declared in the '.env' file.
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;

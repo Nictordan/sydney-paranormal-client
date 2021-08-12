@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 // MATERIAL-UI
 import { Grid } from '@material-ui/core';
 
@@ -7,6 +8,7 @@ import { Grid } from '@material-ui/core';
 import UserCard from '../UserCard/UserCard';
 import StoriesCard from '../StoriesCard/StoriesCard';
 import ParanormalMap from '../ParanormalMap/ParanormalMap';
+
 
 export const Home = () => {
   return (
