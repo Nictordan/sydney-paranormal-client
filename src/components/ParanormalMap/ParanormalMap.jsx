@@ -6,7 +6,8 @@ import CreatePinForm from '../CreatePin/CreatePinForm';
 
 import MapSetup from './MapSetup';
 
-  const [openForm, setOpenForm] = useState(false)
+const ParanormalMap = () => {
+    const [openForm, setOpenForm] = useState(false)
 
   const handleFormButton = () => {
     if (openForm === false) {
@@ -37,8 +38,6 @@ import MapSetup from './MapSetup';
       )
     }
   }
-
-const ParanormalMap = () => {
 
   return (
     <Grid item xs={11}>
