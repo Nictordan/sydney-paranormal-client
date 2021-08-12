@@ -13,17 +13,13 @@ import { Paper, Typography, Button } from '@material-ui/core';
 
 const NotesList = (props) => {
   let {id} = useParams()
+  let pinId = id
   const {userId} = props
-  const [pinId, setPinId] = useState(id)
   const [noteList, setNoteList] = useState(null);
   const [noteOpen, setNoteOpen] = useState(null);
   const [composeNote, setComposeNote] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [newNoteText, setNewNoteText] = useState('');
-
-
-  console.log(id)
-  console.log(pinId)
   
   const openNote = (index) => {
     setNoteOpen(index);
@@ -95,7 +91,7 @@ const NotesList = (props) => {
       setNoteList(null);
     };
     
-  }, [composeNote]);
+  }, [composeNote, pinId]);
 
   if (noteOpen !== null) {
     return (
@@ -177,9 +173,8 @@ const NotesList = (props) => {
 };
 
 const Pin = (props) => {
-  const {userId, store, dispatch} = props
-  const pinId = store.currentPin
-
+  const {userId} = props
+  
 
 
   return (

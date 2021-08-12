@@ -9,7 +9,7 @@ import api from './api/api';
 import initialState from './data/initialState'
 import paranormalReducer from './reducers/paranormalReducer'
 
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // STYLING
 import './App.css';
@@ -51,7 +51,6 @@ const App = () => {
       });
   }, []);
 
-  console.log("PIN: ", store)
 
   return (
     <ThemeProvider theme={theme}>
