@@ -2,6 +2,8 @@ import './StoriesCard.css';
 
 import { Grid, Paper, Typography, Button } from '@material-ui/core';
 
+export const hello = "hello"
+
 const StoriesCard = () => {
   return (
     <Grid item xs={11}>

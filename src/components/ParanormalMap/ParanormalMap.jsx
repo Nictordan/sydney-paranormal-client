@@ -3,6 +3,7 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 
 import './ParanormalMap.css';
 import CreatePinForm from '../CreatePin/CreatePinForm';
+
 import MapSetup from './MapSetup';
 
 const ParanormalMap = () => {
