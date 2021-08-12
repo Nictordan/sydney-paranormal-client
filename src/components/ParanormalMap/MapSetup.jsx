@@ -57,11 +57,6 @@ const Map = () => {
     top: 10,
   };
 
-  // For routing of notes of pin
-  const handlePinRouting = (pin) => {
-    // pin.properties.id
-  }
-
   return (
     <ReactMapGL
       {...viewport}
