@@ -18,7 +18,7 @@ import { SignUp } from './components/SignUp/SignUp';
 
 import { theme } from './styles/materialUITheme'
 
-
+export const hello = "hello"
 
 const App = () => {
   return (
