@@ -11,7 +11,7 @@ import {
 
 import HomeIcon from '@material-ui/icons/Home';
 
-import api from '../../config/api';
+import api from '../../api/api';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Modal from 'react-modal';
@@ -69,7 +69,7 @@ const UserCard = () => {
     }
   };
 
-  Modal.setAppElement('body')
+  Modal.setAppElement('body');
   return (
     <>
       <Grid className="UserCard" item xs={11}>
@@ -91,12 +91,10 @@ const UserCard = () => {
               <Button>Manage Pin</Button>
             </ButtonGroup>
           </div>
-
         </Paper>
       </Grid>
 
-      <Pin userId={userId}/>
-
+      <Pin userId={userId} />
     </>
   );
 };

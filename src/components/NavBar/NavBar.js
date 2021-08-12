@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import api from '../../config/api';
+import api from '../../api/api';
 
 import {
   AppBar,
@@ -72,11 +72,12 @@ const NavBar = () => {
 
         {/* Title */}
         <Typography variant="h6">
-          <Link className="app-header" to="/">Sydney Paranormal</Link>
+          <Link className="app-header" to="/">
+            Sydney Paranormal
+          </Link>
         </Typography>
 
         {/* User login buttons */}
-
         <LogInOrOut />
       </Toolbar>
     </AppBar>

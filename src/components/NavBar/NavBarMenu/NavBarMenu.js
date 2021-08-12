@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import {
-  IconButton,
-  Menu,
-  MenuItem
-} from '@material-ui/core';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
-import MenuIcon from '@material-ui/icons/Menu'
+import MenuIcon from '@material-ui/icons/Menu';
 
 export default function NavBarMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -22,8 +18,12 @@ export default function NavBarMenu() {
 
   return (
     <div>
-      <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-          <MenuIcon />
+      <IconButton
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+      >
+        <MenuIcon />
       </IconButton>
       <Menu
         id="simple-menu"
@@ -33,9 +33,7 @@ export default function NavBarMenu() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/">
-            Home
-          </Link>
+          <Link to="/">Home</Link>
         </MenuItem>
 
         <MenuItem onClick={handleClose}>My Profile</MenuItem>

@@ -1,16 +1,12 @@
-import './LogIn.css'
+import './LogIn.css';
 
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import api from '../../config/api';
+import api from '../../api/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
-import {
-  TextField,
-  Typography,
-  Button,
-} from '@material-ui/core';
+import { TextField, Typography, Button } from '@material-ui/core';
 
 export const LogIn = () => {
   const [redirect, setRedirect] = useState(false);
@@ -38,12 +34,11 @@ export const LogIn = () => {
         email: user.email,
         password: user.password,
       })
-      .then((resp) => {
-        console.log(resp.data.token);
-        localStorage.setItem('token', JSON.stringify(resp.data.token));
+      .then(({ data }) => {
+        console.log('JWT', data.token);
+        localStorage.setItem('token', JSON.stringify(data.token));
+        setRedirect(true);
       });
-
-    setRedirect(true);
   };
 
   if (redirect) {
@@ -58,7 +53,6 @@ export const LogIn = () => {
       <br />
 
       <FormWrapper onSubmit={handleSubmit}>
-
         <TextField
           className="textfield"
           variant="filled"
@@ -89,7 +83,15 @@ export const LogIn = () => {
 
         <br />
 
-        <Button type="submit" value="Log In" id="submit" variant="contained" color="secondary" >Log In</Button>
+        <Button
+          type="submit"
+          value="Log In"
+          id="submit"
+          variant="contained"
+          color="secondary"
+        >
+          Log In
+        </Button>
       </FormWrapper>
     </>
   );
