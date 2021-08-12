@@ -14,6 +14,7 @@ import NavBar from './components/NavBar/NavBar';
 import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp/SignUp';
+import Pin from './components/Pin/Pin';
 
 import { theme } from './styles/materialUITheme'
 
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <Route path="/login" component={LogIn} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/pin" component={Pin} />
           </Switch>
         </Router>
       </div>

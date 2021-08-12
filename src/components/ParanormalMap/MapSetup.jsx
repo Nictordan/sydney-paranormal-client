@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ReactMapGL, { NavigationControl, Marker, Popup } from 'react-map-gl';
 import GeoJSON from 'geojson';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api';
+import { Button } from '@material-ui/core';
 
 const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
 
@@ -55,6 +57,11 @@ const Map = () => {
     top: 10,
   };
 
+  // For routing of notes of pin
+  const handlePinRouting = (pin) => {
+    // pin.properties.id
+  }
+
   return (
     <ReactMapGL
       {...viewport}
@@ -95,12 +102,17 @@ const Map = () => {
           onClose={() => {
             setSelectedPin(null);
           }}
+          closeOnClick={false}
         >
           <div>
             <p>
               <strong>{selectedPin.properties.title}</strong>
             </p>
             <p>{selectedPin.properties.description}</p>
+            {/* <button value={selectedPin} onClick={() => handlePinRouting(selectedPin)}>Go to notes</button> */}
+            <Button>
+              <Link to="/pin">Go to notes</Link>
+            </Button>
           </div>
         </Popup>
       ) : null}
