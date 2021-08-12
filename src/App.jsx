@@ -5,9 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // STYLING
 import './App.css';
 // Material UI Styling
-import {
-  ThemeProvider,
-} from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 // COMPONENTS
 import NavBar from './components/NavBar/NavBar';
