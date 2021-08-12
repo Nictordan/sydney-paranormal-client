@@ -111,8 +111,8 @@ const Map = (props) => {
             </p>
             <p>{selectedPin.properties.description}</p>
             {/* <button value={selectedPin} onClick={() => handlePinRouting(selectedPin)}>Go to notes</button> */}
-            <Button onClick={() => handleCurrentPin(selectedPin, dispatch)}>
-              <Link to="/pin">Go to notes</Link>
+            <Button onClick={() => handleCurrentPin(selectedPin.properties.id, dispatch)}>
+              <Link to={"/pins/" + selectedPin.properties.id}>Go to notes</Link>
             </Button>
           </div>
         </Popup>

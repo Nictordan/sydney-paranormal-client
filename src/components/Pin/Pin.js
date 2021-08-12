@@ -2,19 +2,29 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import React from 'react';
 
+import { BrowserRouter as  Switch, Route, useParams } from 'react-router-dom';
+
 import Note from '../Note/Note';
 import api from '../../api/api';
+
 
 import './Pin.css';
 import { Paper, Typography, Button } from '@material-ui/core';
 
 const NotesList = (props) => {
+  let {id} = useParams()
+  const {userId} = props
+  const [pinId, setPinId] = useState(id)
   const [noteList, setNoteList] = useState(null);
   const [noteOpen, setNoteOpen] = useState(null);
   const [composeNote, setComposeNote] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [newNoteText, setNewNoteText] = useState('');
 
+
+  console.log(id)
+  console.log(pinId)
+  
   const openNote = (index) => {
     setNoteOpen(index);
   };
@@ -31,24 +41,36 @@ const NotesList = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let token = JSON.parse(localStorage.getItem('token'));
-
     api
-      .post('/api/notes', {
-        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
-        note: {
-          title: newNoteTitle,
-          description: newNoteText,
-          user_id: props.userId,
-          pin_id: props.pinId,
-        },
+    .post('/api/notes', {
+      headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
+      note: {
+        title: newNoteTitle,
+        description: newNoteText,
+        user_id: userId,
+        pin_id: pinId,
+      },
+    })
+    .catch((err) => console.error(err))
+    .then(setNewNoteTitle(''))
+    .then(setNewNoteText(''))
+    .then(
+      api
+      .get('/api/pin_notes/' + pinId)
+      .then((res) => {
+        if (Array.isArray(res.data)) {
+          setNoteList(res.data);
+        }
       })
       .catch((err) => console.error(err))
-      .then(setNewNoteTitle(''))
-      .then(setNewNoteText(''))
-      .then();
+    );
 
-    setNoteList(noteList);
     setComposeNote(false);
+
+    return () => {
+      setNoteList(null);
+    };
+
   };
 
   const handleChangeTitle = (e) => {
@@ -61,18 +83,19 @@ const NotesList = (props) => {
 
   useEffect(() => {
     api
-      .get('/api/pin_notes/' + props.pinId)
+      .get('/api/pin_notes/' + pinId)
       .then((res) => {
         if (Array.isArray(res.data)) {
           setNoteList(res.data);
         }
       })
-      .catch((err) => console.error(err));
-
+      .catch((err) => console.error(err))
+      
     return () => {
       setNoteList(null);
     };
-  }, [composeNote, props.pinId]);
+    
+  }, [composeNote]);
 
   if (noteOpen !== null) {
     return (
@@ -154,16 +177,18 @@ const NotesList = (props) => {
 };
 
 const Pin = (props) => {
-  const [pinId, setPinId] = useState(1);
+  const {userId, store, dispatch} = props
+  const pinId = store.currentPin
 
-  // This is just set to 1 for testing purposes
-  useEffect(() => {
-    setPinId(1);
-  }, []);
+
 
   return (
     <>
-      <NotesList userId={props.userId} pinId={pinId} />
+      <Switch>
+        <Route path="/pins/:id">
+          <NotesList userId={userId} />
+        </Route>
+      </Switch>
     </>
   );
 };

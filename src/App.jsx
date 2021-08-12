@@ -1,11 +1,15 @@
 // React Components and Routing
 import React, { useReducer } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+import api from './api/api';
 
 //REDUCER
 import initialState from './data/initialState'
 import paranormalReducer from './reducers/paranormalReducer'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom';
 
 // STYLING
 import './App.css';
@@ -31,7 +35,23 @@ const App = () => {
     initialState
   )
 
-  console.log("PIN: ", store.currentPin)
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem('token'));
+
+    api
+      .get('/api/get_user', {
+        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
+      })
+      .then((res) => {
+        if (res.data['loggedin']) {
+          setUserId(res.data['user_id']);
+        }
+      });
+  }, []);
+
+  console.log("PIN: ", store)
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,8 +66,8 @@ const App = () => {
             </Route>
             <Route path="/login" component={LogIn} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/pin" >
-              <Pin store={store} dispatch={dispatch} />
+            <Route path={"/pins"} >
+              <Pin userId={userId} store={store} dispatch={dispatch} />
             </Route>
           </Switch>
         </Router>
