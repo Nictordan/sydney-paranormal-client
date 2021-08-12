@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
 
 // MATERIAL-UI
-import { Grid } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 
 // COMPONENTS
+
 import UserCard from "../UserCard/UserCard";
 import ParanormalMap from "../ParanormalMap/ParanormalMap";
 
