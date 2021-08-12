@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import React from "react";
@@ -9,7 +8,7 @@ import Note from '../Note/Note';
 import api from '../../config/api';
 
 import './Pin.css';
-import { Grid, Paper, Typography, Button } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 
 
 
@@ -95,7 +94,7 @@ const NotesList = (props) => {
             setNoteList(null);
         };
         
-    }, [composeNote])
+    }, [composeNote, props.pinId])
 
 
 
@@ -175,19 +174,13 @@ const NotesList = (props) => {
 
 const Pin = (props) => {
 
-    const [pinId, setPinId] = useState(1);
+    const [pinId, setPinId] = useState(null);
 
-    // api
-    // .post('/api/notes', {
-    //     "title":"another entry",
-    //     "user_id":2,
-    //     "pin_id":1
-    // })
-    // .then((res) => {
-    //     console.log(res)
-    // });
-
-
+    // This is just set to 1 for testing purposes
+    useEffect(() => {
+        setPinId(1)
+    }, [])
+    
 
     return (
         <>

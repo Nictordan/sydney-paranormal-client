@@ -22,7 +22,7 @@ const Comments = (props) => {
                 <Typography className="" variant="caption">{comment.created_at}</Typography>
             </li>
         )
-        console.log(props.comments)
+        
         return listItems
     }
     
@@ -49,7 +49,7 @@ const Note = (props) => {
 
         
 
-    }, [])
+    }, [props.noteOpen])
 
 
     const handleChange = (e) => {
