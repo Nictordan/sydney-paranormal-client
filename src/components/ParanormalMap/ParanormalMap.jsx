@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, Paper, Typography } from '@material-ui/core';
 import GeoJSON from 'geojson';
 
 import './ParanormalMap.css';
@@ -30,6 +30,7 @@ const ParanormalMap = () => {
   const [lat, setLat] = useState(mapCoordinates.sydney.latitude);
   const [lng, setLng] = useState(mapCoordinates.sydney.longitude);
   const [locationsFromBackend, setLocationsFromBackend] = useState([]);
+  const [openForm, setOpenForm] = useState(false)
 
   useEffect(() => {
     api.get('/pins').then(({ data }) => {
@@ -124,7 +125,7 @@ const ParanormalMap = () => {
             new mapboxgl.Popup({ offset: 30 })
               .setLngLat(mapCoordinates)
               .setHTML(
-                `<strong>${title}</strong>` + 
+                `<strong>${title}</strong>` +
                 `<p>${description}</p>`
               )
               .addTo(map);
@@ -147,14 +148,46 @@ const ParanormalMap = () => {
     return () => map.remove();
   }, [locationsFromBackend]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleFormButton = () => {
+    if (openForm === false) {
+      setOpenForm(true)
+    } else {
+      setOpenForm(false)
+    }
+  }
+
+  const renderForm = () => {
+    if (openForm === false) {
+      return <Button
+        variant="contained"
+        color="primary"
+        onClick={handleFormButton}
+        style={{marginBottom:50}}
+      >Post a pin</Button>
+    } else {
+      return (
+        <div className="map-container">
+          <CreatePinForm />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleFormButton}
+          >Back</Button>
+        </div>
+      )
+    }
+  }
+
   return (
     <Grid item xs={11}>
       <Paper style={{ width: '100%' }}>
-        <Typography variant="h5">Paranormal Activities</Typography>
-        <CreatePinForm />
-        {/* This div must contain a 'ref' prop with the mapContainer
+        <div className="map-container">
+          <Typography className="paranormal-map-heading" variant="h5">Paranormal Activities</Typography>
+          {renderForm()}
+          {/* This div must contain a 'ref' prop with the mapContainer
         so that the map gets rendered. */}
-        <div ref={mapContainer} className="map-container" />
+          <div ref={mapContainer} className="map" />
+        </div>
       </Paper>
     </Grid>
   );

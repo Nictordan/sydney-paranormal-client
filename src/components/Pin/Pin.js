@@ -86,27 +86,29 @@ const NotesList = (props) => {
     );
   } else if (composeNote) {
     return (
-      <Paper style={{ width: '100%', marginBottom: 20, padding: 10 }}>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <input
-              type="text"
-              value={newNoteTitle}
-              onChange={handleChangeTitle}
-            />
-            <input
-              type="text"
-              value={newNoteText}
-              onChange={handleChangeText}
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+      
+        <Paper style={{ width: '100%', marginBottom: 20, padding: 10 }}>
+          <form onSubmit={handleSubmit}>
+            <label>
+              <input
+                type="text"
+                value={newNoteTitle}
+                onChange={handleChangeTitle}
+              />
+              <input
+                type="text"
+                value={newNoteText}
+                onChange={handleChangeText}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
 
-        <Button variant="contained" color="secondary" onClick={backClick}>
-          Back
-        </Button>
-      </Paper>
+          <Button variant="contained" color="secondary" onClick={backClick}>
+            Back
+          </Button>
+        </Paper>
+      
     );
   } else if (noteList !== null && composeNote === false) {
     let listItems = [];
