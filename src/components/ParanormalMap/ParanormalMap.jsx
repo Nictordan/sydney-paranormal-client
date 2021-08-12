@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Button, Grid, Paper, Typography } from '@material-ui/core';
 
 import './ParanormalMap.css';
 import CreatePinForm from '../CreatePin/CreatePinForm';
@@ -7,12 +7,46 @@ import CreatePinForm from '../CreatePin/CreatePinForm';
 import MapSetup from './MapSetup';
 
 const ParanormalMap = () => {
+    const [openForm, setOpenForm] = useState(false)
+
+  const handleFormButton = () => {
+    if (openForm === false) {
+      setOpenForm(true)
+    } else {
+      setOpenForm(false)
+    }
+  }
+
+  const renderForm = () => {
+    if (openForm === false) {
+      return <Button
+        variant="contained"
+        color="primary"
+        onClick={handleFormButton}
+        style={{marginBottom:50}}
+      >Post a pin</Button>
+    } else {
+      return (
+        <div className="map-container">
+          <CreatePinForm />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleFormButton}
+          >Back</Button>
+        </div>
+      )
+    }
+  }
+
   return (
     <Grid item xs={11}>
       <Paper style={{ width: '100%' }}>
-        <Typography variant="h5">Paranormal Activities</Typography>
-        <CreatePinForm />
-        <MapSetup />
+        <div className="map-container">
+          <Typography className="paranormal-map-heading" variant="h5">Paranormal Activities</Typography>
+          {renderForm()}
+          <MapSetup className="map" />
+        </div>
       </Paper>
     </Grid>
   );

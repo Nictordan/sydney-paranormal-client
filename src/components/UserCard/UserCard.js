@@ -4,12 +4,9 @@ import {
   Grid,
   Paper,
   Button,
-  IconButton,
   ButtonGroup,
   Typography,
 } from '@material-ui/core';
-
-import HomeIcon from '@material-ui/icons/Home';
 
 import api from '../../api/api';
 import { useState } from 'react';
@@ -79,9 +76,6 @@ const UserCard = () => {
           style={{ height: 180, width: '100%', marginBottom: 20 }}
         >
           <div className="UserCardPaperHeader">
-            <IconButton>
-              <HomeIcon style={{ height: 25, width: 25 }} />
-            </IconButton>
             <Name />
             {/* <Typography variant="h5">Welcome, User</Typography> */}
           </div>
