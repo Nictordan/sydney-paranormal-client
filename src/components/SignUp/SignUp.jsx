@@ -1,16 +1,12 @@
-import './SignUp.css'
+import './SignUp.css';
 
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import api from '../../config/api';
+import api from '../../api/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
-import {
-  TextField,
-  Typography,
-  Button
-} from '@material-ui/core'
+import { TextField, Typography, Button } from '@material-ui/core';
 
 export const SignUp = () => {
   const [redirect, setRedirect] = useState(false);
@@ -31,19 +27,18 @@ export const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    api.post('/api/signup', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      username: user.username,
-      email: user.email,
-      password: user.password,
-      password_confirmation: user.passwordConfirmation,
-    });
-    setRedirect(true);
-
-    console.log('[SIGN UP]', user);
+    api
+      .post('/api/signup', {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        password_confirmation: user.passwordConfirmation,
+      })
+      .then(setRedirect(true));
   };
 
   if (redirect) {
@@ -111,7 +106,15 @@ export const SignUp = () => {
           color="primary"
         />
         <br />
-        <Button type="submit" value="Sign Up" id="submit" variant="contained" color="secondary">Sign Up</Button>
+        <Button
+          type="submit"
+          value="Sign Up"
+          id="submit"
+          variant="contained"
+          color="secondary"
+        >
+          Sign Up
+        </Button>
       </FormWrapper>
     </>
   );
