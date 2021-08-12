@@ -33,7 +33,7 @@ const ParanormalMap = () => {
   const [locationsFromBackend, setLocationsFromBackend] = useState([]);
 
   useEffect(() => {
-    api.get('/locations').then(({ data }) => {
+    api.get('/pins').then(({ data }) => {
       setLocationsFromBackend(data);
     });
   }, []);
@@ -124,7 +124,10 @@ const ParanormalMap = () => {
             // The offset is for the vertical axis. Positive goes up, negative down.
             new mapboxgl.Popup({ offset: 30 })
               .setLngLat(mapCoordinates)
-              .setHTML(`<strong>${title}</strong>` + `<p>${description}</p>`)
+              .setHTML(
+                `<strong>${title}</strong>` + 
+                `<p>${description}</p>`
+              )
               .addTo(map);
 
             // Change the cursor to a pointer when the mouse is over the locations layer.
@@ -148,7 +151,7 @@ const ParanormalMap = () => {
   return (
     <Grid item xs={11}>
       <Paper style={{ width: '100%' }}>
-        <Typography variant="h5">Paranormal Activity</Typography>
+        <Typography variant="h5">Paranormal Activities</Typography>
         <CreatePinForm />
         {/* This div must contain a 'ref' prop with the mapContainer
         so that the map gets rendered. */}

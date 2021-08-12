@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button } from '@material-ui/core';
 
-import './CreatePinForm.css';
 import api from '../../api/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
@@ -28,7 +27,7 @@ const CreatePinForm = () => {
     e.preventDefault();
 
     api
-      .post('/api/add_location', {
+      .post('/api/add_pin', {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -53,7 +52,7 @@ const CreatePinForm = () => {
           className="textfield"
           label="Title"
           variant="outlined"
-          color="secondary"
+          color="primary"
           value={pin.title}
           onChange={handleChange}
         />
@@ -66,7 +65,7 @@ const CreatePinForm = () => {
           className="textfield"
           label="Description"
           variant="outlined"
-          color="secondary"
+          color="primary"
           value={pin.description}
           onChange={handleChange}
         />
@@ -79,7 +78,7 @@ const CreatePinForm = () => {
           className="textfield"
           label="Street Address"
           variant="outlined"
-          color="secondary"
+          color="primary"
           value={pin.street}
           onChange={handleChange}
         />
@@ -92,7 +91,7 @@ const CreatePinForm = () => {
           className="textfield"
           label="Suburb"
           variant="outlined"
-          color="secondary"
+          color="primary"
           value={pin.suburb}
           onChange={handleChange}
         />
@@ -105,7 +104,7 @@ const CreatePinForm = () => {
           className="textfield"
           label="State"
           variant="outlined"
-          color="secondary"
+          color="primary"
           value={pin.state}
           onChange={handleChange}
         />
@@ -118,13 +117,13 @@ const CreatePinForm = () => {
           className="textfield"
           label="Country"
           variant="outlined"
-          color="secondary"
-          value={pin.state}
+          color="primary"
+          value={pin.country}
           onChange={handleChange}
         />
         <br />
 
-        <Button type="submit" id="submit" variant="contained" color="secondary">
+        <Button type="submit" id="submit" variant="contained" color="primary">
           Create Pin
         </Button>
         <br />

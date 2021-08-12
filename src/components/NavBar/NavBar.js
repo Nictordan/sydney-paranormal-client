@@ -78,7 +78,6 @@ const NavBar = () => {
         </Typography>
 
         {/* User login buttons */}
-
         <LogInOrOut />
       </Toolbar>
     </AppBar>
