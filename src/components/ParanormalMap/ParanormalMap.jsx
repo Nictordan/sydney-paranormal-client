@@ -8,6 +8,7 @@ import './ParanormalMap.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api';
 import CreatePinForm from '../CreatePin/CreatePinForm';
+import Map from './Map';
 
 mapboxgl.workerClass =
   require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -153,6 +154,7 @@ const ParanormalMap = () => {
       <Paper style={{ width: '100%' }}>
         <Typography variant="h5">Paranormal Activities</Typography>
         <CreatePinForm />
+        <Map />
         {/* This div must contain a 'ref' prop with the mapContainer
         so that the map gets rendered. */}
         <div ref={mapContainer} className="map-container" />
