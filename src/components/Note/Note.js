@@ -22,7 +22,7 @@ const Comments = (props) => {
                 <Typography className="" variant="caption">{comment.created_at}</Typography>
             </li>
         )
-        
+
         return listItems
     }
     
@@ -33,6 +33,7 @@ const Note = (props) => {
 
     const [note, setNote] = useState(null)
     const [comments, setComments] = useState(null)
+    const [refreshComments, setRefreshComments] = useState(false)
     const [newCommentText, setNewCommentText] = useState('')
 
 
@@ -47,9 +48,9 @@ const Note = (props) => {
             
         }).catch(err => console.error(err))
 
-        
+        setRefreshComments(false)
 
-    }, [props.noteOpen])
+    }, [refreshComments, props.noteOpen])
 
 
     const handleChange = (e) => {
@@ -72,11 +73,13 @@ const Note = (props) => {
         .then(
             setNewCommentText('')
         )
+        setRefreshComments(true)
     }
 
 
 
-    if (note !==null) {
+
+    if (note !==null && refreshComments === false) {
         return (
             <>
                 <Paper style={{ width: '100%', marginBottom: 20, padding: 10 }}>
