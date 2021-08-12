@@ -6,8 +6,10 @@ import CreatePinForm from '../CreatePin/CreatePinForm';
 
 import MapSetup from './MapSetup';
 
-const ParanormalMap = () => {
-    const [openForm, setOpenForm] = useState(false)
+const ParanormalMap = (props) => {
+  const {store, dispatch} = props
+
+  const [openForm, setOpenForm] = useState(false)
 
   const handleFormButton = () => {
     if (openForm === false) {
@@ -45,7 +47,7 @@ const ParanormalMap = () => {
         <div className="map-container">
           <Typography className="paranormal-map-heading" variant="h5">Paranormal Activities</Typography>
           {renderForm()}
-          <MapSetup className="map" />
+          <MapSetup className="map" store={store} dispatch={dispatch} />
         </div>
       </Paper>
     </Grid>

@@ -13,8 +13,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Modal from 'react-modal';
 
-import Pin from '../Pin/Pin';
-
 const UserCard = () => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState(null);
@@ -86,9 +84,7 @@ const UserCard = () => {
             </ButtonGroup>
           </div>
         </Paper>
-      </Grid>
-
-      <Pin userId={userId} />
+      </Grid> 
     </>
   );
 };
