@@ -1,6 +1,7 @@
+import './Note.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Paper, Typography, Button } from '@material-ui/core';
+import { Paper, Typography, Button, TextField, Grid } from '@material-ui/core';
 import api from '../../api/api';
 import Comments from '../Comments/Comments';
 
@@ -57,8 +58,8 @@ const Note = (props) => {
 
   if (note !== null && refreshComments === false) {
     return (
-      <>
-        <Paper style={{ width: '100%', marginBottom: 20, padding: 10 }}>
+        <Grid className="test" item justifyContent="center">
+        
           <Typography variant="h5">{note.title}</Typography>
 
           <Typography
@@ -67,9 +68,9 @@ const Note = (props) => {
             {note.description}
           </Typography>
 
-          <Paper style={{ width: 'auto', marginBottom: 20, padding: 10 }}>
-            <Typography>Comments</Typography>
-            <Comments noteOpen={props.noteOpen} commentUser={props.userId} comments={comments} toggleCommentRefresh={toggleCommentRefresh}/>
+          <Paper className="comment-container" style={{ width: '100%', marginBottom: 20, padding: 10 }}>
+            <Typography variant="h6">Comments</Typography>
+            <Comments noteOpen={props.noteOpen} commentUser={props.userId} comments={comments} toggleCommentRefresh={toggleCommentRefresh} />
             <form
               onSubmit={handleSubmit}
               style={{
@@ -78,12 +79,16 @@ const Note = (props) => {
                 flexDirection: 'column',
               }}
             >
-              <textarea
-                rows="7"
-                cols="35"
+              <TextField
+                multiline={true}
+                minRows={5}
+                style={{width:'70%'}}
+                variant="outlined"
+                color="primary"
+                label="Comment"
                 value={newCommentText}
                 onChange={handleChange}
-              ></textarea>
+              />
 
               <Button
                 style={{ width: '40%', margin: '10px' }}
@@ -96,8 +101,9 @@ const Note = (props) => {
               </Button>
             </form>
           </Paper>
-        </Paper>
-      </>
+        
+        </Grid>
+      
     );
   } else {
     return null;
