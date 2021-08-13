@@ -8,8 +8,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api';
 import { Button } from '@material-ui/core';
 
-//FUNCTIONS
-import { handleCurrentPin } from '../../utils/reducerFunctions';
 
 const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
 
@@ -17,8 +15,6 @@ const customIcon =
   'https://docs.mapbox.com/mapbox-gl-js/assets/custom_marker.png';
 
 const Map = (props) => {
-  const { store, dispatch } = props;
-  console.log('MAP PIN: ', store.currentPin);
 
   const mapCoordinates = {
     sydney: {
@@ -110,9 +106,8 @@ const Map = (props) => {
               <strong>{selectedPin.properties.title}</strong>
             </p>
             <p>{selectedPin.properties.description}</p>
-            {/* <button value={selectedPin} onClick={() => handlePinRouting(selectedPin)}>Go to notes</button> */}
-            <Button onClick={() => handleCurrentPin(selectedPin, dispatch)}>
-              <Link to="/pin">Go to notes</Link>
+            <Button >
+              <Link to={"/pins/" + selectedPin.properties.id}>Go to notes</Link>
             </Button>
           </div>
         </Popup>

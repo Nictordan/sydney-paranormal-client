@@ -1,5 +1,9 @@
 // React Components and Routing
 import React, { useReducer } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+import api from './api/api';
 
 //REDUCER
 import initialState from './data/initialState'
@@ -32,7 +36,22 @@ const App = () => {
     initialState
   )
 
-  console.log("PIN: ", store.currentPin)
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    let token = JSON.parse(localStorage.getItem('token'));
+
+    api
+      .get('/api/get_user', {
+        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
+      })
+      .then((res) => {
+        if (res.data['loggedin']) {
+          setUserId(res.data['user_id']);
+        }
+      });
+  }, []);
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -48,8 +67,8 @@ const App = () => {
             <Route path="/about" component={About} />
             <Route path="/login" component={LogIn} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/pin" >
-              <Pin store={store} dispatch={dispatch} />
+            <Route path={"/pins"} >
+              <Pin userId={userId} store={store} dispatch={dispatch} />
             </Route>
           </Switch>
         </Router>

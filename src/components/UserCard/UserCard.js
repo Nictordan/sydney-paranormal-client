@@ -3,8 +3,6 @@ import './UserCard.css';
 import {
   Grid,
   Paper,
-  Button,
-  ButtonGroup,
   Typography,
 } from '@material-ui/core';
 
@@ -15,31 +13,6 @@ import Modal from 'react-modal';
 
 const UserCard = () => {
   const [userName, setUserName] = useState('');
-  const [userId, setUserId] = useState(null);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-
-    let token = JSON.parse(localStorage.getItem('token'));
-
-    api
-      .get('/api/get_user', {
-        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
-      })
-      .then((res) => {
-        if (res.data['loggedin']) {
-          api
-            .post('/api/pins', {
-              user_id: userId,
-              // this title of 'bunyip' is just a placeholder until pin input is sorted
-              title: 'zombie',
-            })
-            .then((res) => {
-              console.log(res.data);
-            });
-        }
-      });
-  };
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem('token'));
@@ -51,7 +24,6 @@ const UserCard = () => {
       .then((res) => {
         if (res.data['loggedin']) {
           setUserName(res.data['user_name']);
-          setUserId(res.data['user_id']);
         }
       });
   }, []);
@@ -76,12 +48,6 @@ const UserCard = () => {
           <div className="UserCardPaperHeader">
             <Name />
             {/* <Typography variant="h5">Welcome, User</Typography> */}
-          </div>
-          <div>
-            <ButtonGroup variant="contained" color="primary">
-              <Button onClick={handleClick}>Add Pin</Button>
-              <Button>Manage Pin</Button>
-            </ButtonGroup>
           </div>
         </Paper>
       </Grid> 

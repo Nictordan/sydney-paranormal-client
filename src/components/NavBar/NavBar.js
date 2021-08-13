@@ -32,7 +32,6 @@ const NavBar = () => {
       .then((res) => {
         if (res.data['loggedin']) {
           setLoggedIn(true);
-          console.log(loggedIn);
         }
       });
   }, [loggedIn]);
