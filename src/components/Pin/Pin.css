@@ -6,12 +6,20 @@
     align-items: center;
 }
 
-.title {
-
+.noteform {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    height: 60vh;
+    padding: 0 20px 0 20px;
 }
 
-.date {
-
+.pin-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .description {

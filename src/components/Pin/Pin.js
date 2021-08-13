@@ -2,25 +2,25 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import React from 'react';
 
-import { BrowserRouter as  Switch, Route, useParams } from 'react-router-dom';
+import { BrowserRouter as Switch, Route, useParams } from 'react-router-dom';
 
 import Note from '../Note/Note';
 import api from '../../api/api';
 
 
 import './Pin.css';
-import { Paper, Typography, Button } from '@material-ui/core';
+import { Paper, Typography, Button, TextField, Grid } from '@material-ui/core';
 
 const NotesList = (props) => {
-  let {id} = useParams()
+  let { id } = useParams()
   let pinId = id
-  const {userId} = props
+  const { userId } = props
   const [noteList, setNoteList] = useState(null);
   const [noteOpen, setNoteOpen] = useState(null);
   const [composeNote, setComposeNote] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState('');
   const [newNoteText, setNewNoteText] = useState('');
-  
+
   const openNote = (index) => {
     setNoteOpen(index);
   };
@@ -38,28 +38,28 @@ const NotesList = (props) => {
     e.preventDefault();
     let token = JSON.parse(localStorage.getItem('token'));
     api
-    .post('/api/notes', {
-      headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
-      note: {
-        title: newNoteTitle,
-        description: newNoteText,
-        user_id: userId,
-        pin_id: pinId,
-      },
-    })
-    .catch((err) => console.error(err))
-    .then(setNewNoteTitle(''))
-    .then(setNewNoteText(''))
-    .then(
-      api
-      .get('/api/pin_notes/' + pinId)
-      .then((res) => {
-        if (Array.isArray(res.data)) {
-          setNoteList(res.data);
-        }
+      .post('/api/notes', {
+        headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
+        note: {
+          title: newNoteTitle,
+          description: newNoteText,
+          user_id: userId,
+          pin_id: pinId,
+        },
       })
       .catch((err) => console.error(err))
-    );
+      .then(setNewNoteTitle(''))
+      .then(setNewNoteText(''))
+      .then(
+        api
+          .get('/api/pin_notes/' + pinId)
+          .then((res) => {
+            if (Array.isArray(res.data)) {
+              setNoteList(res.data);
+            }
+          })
+          .catch((err) => console.error(err))
+      );
 
     setComposeNote(false);
 
@@ -86,11 +86,11 @@ const NotesList = (props) => {
         }
       })
       .catch((err) => console.error(err))
-      
+
     return () => {
       setNoteList(null);
     };
-    
+
   }, [composeNote, pinId]);
 
   if (noteOpen !== null) {
@@ -105,29 +105,42 @@ const NotesList = (props) => {
     );
   } else if (composeNote) {
     return (
-      
-        <Paper style={{ width: '100%', marginBottom: 20, padding: 10 }}>
-          <form onSubmit={handleSubmit}>
-            <label>
-              <input
-                type="text"
-                value={newNoteTitle}
-                onChange={handleChangeTitle}
-              />
-              <input
-                type="text"
-                value={newNoteText}
-                onChange={handleChangeText}
-              />
-            </label>
-            <input type="submit" value="Submit" />
+      <Grid container justifyContent="center" xs={11}>
+        <Paper className="pin-container" style={{ width: '100%', marginBottom: 20, padding: 10 }}>
+          <form className="noteform" onSubmit={handleSubmit}>
+            <TextField
+              className="textfield"
+              variant="outlined"
+              color="primary"
+              label="Title"
+              type="text"
+              value={newNoteTitle}
+              onChange={handleChangeTitle}
+            />
+
+            <TextField
+              className="textfield"
+              variant="outlined"
+              color="primary"
+              minRows="5"
+              label="Description"
+              multiline="true"
+              type="text"
+              value={newNoteText}
+              onChange={handleChangeText}
+            />
+
+            <Button type="submit" variant="contained" color="secondary">Submit</Button>
+
           </form>
 
           <Button variant="contained" color="secondary" onClick={backClick}>
             Back
           </Button>
         </Paper>
-      
+      </Grid>
+
+
     );
   } else if (noteList !== null && composeNote === false) {
     let listItems = [];
@@ -173,8 +186,8 @@ const NotesList = (props) => {
 };
 
 const Pin = (props) => {
-  const {userId} = props
-  
+  const { userId } = props
+
 
 
   return (
