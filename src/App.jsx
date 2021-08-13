@@ -23,7 +23,6 @@ import NavBar from './components/NavBar/NavBar';
 import { Home } from './components/Home/Home';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp/SignUp';
-import { About } from './components/About/About';
 import Pin from './components/Pin/Pin';
 
 import { theme } from './styles/materialUITheme'
@@ -66,7 +65,6 @@ const App = () => {
             <Route path="/" exact >
               <Home store={store} dispatch={dispatch} />
             </Route>
-            <Route path="/about" component={About} />
             <Route path="/login" component={LogIn} />
             <Route path="/signup" component={SignUp} />
             <Route path={"/pins"} >
