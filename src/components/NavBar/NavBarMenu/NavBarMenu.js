@@ -36,8 +36,9 @@ export default function NavBarMenu() {
           <Link to="/">Home</Link>
         </MenuItem>
 
-        <MenuItem onClick={handleClose}>My Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/about">How To Use</Link>
+        </MenuItem>
       </Menu>
     </div>
   );

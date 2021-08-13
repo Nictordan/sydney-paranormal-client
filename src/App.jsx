@@ -21,6 +21,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import NavBar from './components/NavBar/NavBar';
 // Routing Components
 import { Home } from './components/Home/Home';
+import { About } from './components/About/About';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp/SignUp';
 import Pin from './components/Pin/Pin';
@@ -56,6 +57,7 @@ const App = () => {
 
   
 
+
   if (refreshApp) {
     return (
       <ThemeProvider theme={theme}>
@@ -81,6 +83,7 @@ const App = () => {
   } else {
     return null
   }
+
 };
 
 export default App;

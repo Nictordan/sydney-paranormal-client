@@ -1,20 +1,17 @@
 .map-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  /* height: 600px; */
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  padding: 0 40px 40px 40px;
+}
+
+.mapboxgl-map {
+  border-radius: 10px;
 }
 
 .paranormal-map-heading {
   padding: 20px 0 20px 0;
-}
-
-.map {
-  height: 500px;
-  width: 95%;
 }
 
 .pin {
@@ -24,7 +21,7 @@
 }
 
 .popup {
-  width: 40%;
+  width: 25%;
   height: 60px;
   line-height: 1.5;
   cursor: pointer;
@@ -32,4 +29,16 @@
 
 .popup p {
   font-size: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .map-container {
+    padding: 0 20px 40px 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .map-container {
+    padding: 0 15px 40px 15px;
+  }
 }
