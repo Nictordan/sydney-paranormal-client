@@ -13,7 +13,6 @@ import Modal from 'react-modal';
 
 const UserCard = () => {
   const [userName, setUserName] = useState('');
-  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     let token = JSON.parse(localStorage.getItem('token'));
@@ -25,7 +24,6 @@ const UserCard = () => {
       .then((res) => {
         if (res.data['loggedin']) {
           setUserName(res.data['user_name']);
-          setUserId(res.data['user_id']);
         }
       });
   }, []);

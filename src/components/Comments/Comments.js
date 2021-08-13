@@ -10,8 +10,11 @@ const DeleteButton =(props) => {
   const buttonUser = props.buttonUser
   let token = JSON.parse(localStorage.getItem('token'));
 
+  
+  const toggleCommentRefresh = props.toggleCommentRefresh
   useEffect(() => {
-    props.toggleCommentRefresh()
+    toggleCommentRefresh()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleteButton])
  
   api
