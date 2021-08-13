@@ -4,5 +4,5 @@ export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 50%;
+  min-width: 50vw;
 `;
