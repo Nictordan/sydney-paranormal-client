@@ -47,7 +47,6 @@ const App = () => {
       })
       .then((res) => {
         if (res.data['loggedin']) {
-          console.log(res)
           setUserId(res.data['user_id']);
         }
       });

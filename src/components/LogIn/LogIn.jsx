@@ -38,6 +38,7 @@ export const LogIn = (props) => {
       .then(({ data }) => {
         console.log('JWT', data.token);
         localStorage.setItem('token', JSON.stringify(data.token));
+        window.location.href = '/'
         setRedirect(true);
       });
   };
