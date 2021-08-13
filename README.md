@@ -22,4 +22,4 @@ REACT_APP_MAPBOX_KEY=your_api_key
 ```
 ---
 For full details on the documentation, please refer to the README file at the root directory of this organization:
-https://github.com/Nictordan/sydney-paranormal-client
+https://github.com/Nictordan
