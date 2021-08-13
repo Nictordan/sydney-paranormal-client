@@ -2,54 +2,24 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Paper, Typography, Button } from '@material-ui/core';
 import api from '../../api/api';
+import Comments from '../Comments/Comments';
 
-const Comments = (props) => {
-  if (props.comments === null) {
-    return null;
-  } else {
-    let listItems = null;
-    listItems = props.comments.map((comment) => (
-      <li
-        style={{
-          height: 'auto',
-          right: '10px',
-          padding: '4px',
-          margin: '10px',
-        }}
-        className="note"
-        key={comment.id}
-      >
-        <Typography
-          className=""
-          style={{ textAlign: 'left', fontSize: '12px' }}
-          variant="subtitle1"
-        >
-          {comment.user_name + ' says:'}
-        </Typography>
-
-        <Typography
-          className=""
-          style={{ textAlign: 'left' }}
-          variant="subtitle1"
-        >
-          {comment.text}
-        </Typography>
-
-        <Typography className="" variant="caption">
-          {comment.created_at}
-        </Typography>
-      </li>
-    ));
-
-    return listItems;
-  }
-};
 
 const Note = (props) => {
   const [note, setNote] = useState(null);
   const [comments, setComments] = useState(null);
   const [refreshComments, setRefreshComments] = useState(false);
   const [newCommentText, setNewCommentText] = useState('');
+
+  const [commentRefresh, setCommentRefresh] = useState(false)
+  const toggleCommentRefresh = () => {
+    if (commentRefresh === true) {
+      setCommentRefresh(false)
+    } else {
+      setCommentRefresh(true)
+    }
+  }
+
 
   useEffect(() => {
     api
@@ -61,7 +31,7 @@ const Note = (props) => {
       .catch((err) => console.error(err));
 
     setRefreshComments(false);
-  }, [refreshComments, props.noteOpen]);
+  }, [refreshComments, commentRefresh, props.noteOpen]);
 
   const handleChange = (e) => {
     setNewCommentText(e.target.value);
@@ -99,7 +69,7 @@ const Note = (props) => {
 
           <Paper style={{ width: 'auto', marginBottom: 20, padding: 10 }}>
             <Typography>Comments</Typography>
-            <Comments noteOpen={props.noteOpen} comments={comments} />
+            <Comments noteOpen={props.noteOpen} commentUser={props.userId} comments={comments} toggleCommentRefresh={toggleCommentRefresh}/>
             <form
               onSubmit={handleSubmit}
               style={{
