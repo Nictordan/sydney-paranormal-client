@@ -1,4 +1,4 @@
-import './LogIn.css';
+import './SignUp.css';
 
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
@@ -8,11 +8,13 @@ import { FormWrapper } from '../../styles/FormWrapper';
 
 import { TextField, Typography, Button } from '@material-ui/core';
 
-export const LogIn = (props) => {
+export const SignUp = () => {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({
+    username: '',
     email: '',
     password: '',
+    passwordConfirmation: '',
   });
 
   const handleChange = (e) => {
@@ -25,74 +27,93 @@ export const LogIn = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
     api
-      .post('/api/login', {
+      .post('/api/signup', {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
+        username: user.username,
         email: user.email,
         password: user.password,
+        password_confirmation: user.passwordConfirmation,
       })
-      .then(({ data }) => {
-        console.log('JWT', data.token);
-        localStorage.setItem('token', JSON.stringify(data.token));
-        window.location.href = '/'
-        setRedirect(true);
-      });
+      .then(setRedirect(true));
   };
 
   if (redirect) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   return (
     <>
       <Typography variant="h2" color="secondary">
-        Log In Page
+        Sign Up
       </Typography>
       <br />
 
       <FormWrapper onSubmit={handleSubmit}>
+        {/* USERNAME */}
         <TextField
           className="textfield"
+          type="text"
+          name="username"
+          id="username"
+          value={user.username}
+          onChange={handleChange}
+          label="Username"
           variant="filled"
-          label="Email"
-          placeholder="name@example.com"
           color="primary"
+        />
+        <br />
+        {/* EMAIL */}
+        <TextField
           type="email"
           name="email"
           id="email"
           value={user.email}
           onChange={handleChange}
-        />
-
-        <br />
-
-        <TextField
           className="textfield"
+          label="Email"
           variant="filled"
-          label="Password"
-          placeholder="name@example.com"
           color="primary"
+          placeholder="name@example.com"
+        />
+        <br />
+        {/* PASSWORD */}
+        <TextField
           type="password"
           name="password"
           id="password"
           value={user.password}
           onChange={handleChange}
+          className="textfield"
+          label="Password"
+          variant="filled"
+          color="primary"
         />
-
         <br />
-
+        {/* PASSWORD CONFIRMATION */}
+        <TextField
+          type="password"
+          name="passwordConfirmation"
+          id="passwordConfirmation"
+          value={user.passwordConfirmation}
+          onChange={handleChange}
+          className="textfield"
+          label="Confirm Password"
+          variant="filled"
+          color="primary"
+        />
+        <br />
         <Button
           type="submit"
-          value="Log In"
+          value="Sign Up"
           id="submit"
           variant="contained"
           color="secondary"
         >
-          Log In
+          Sign Up
         </Button>
       </FormWrapper>
     </>
