@@ -8,6 +8,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import api from '../../api/api';
 import { Button } from '@material-ui/core';
 
+import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 
 const mapboxApiKey = process.env.REACT_APP_MAPBOX_KEY;
 
