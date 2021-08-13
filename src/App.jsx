@@ -36,6 +36,8 @@ const App = () => {
     initialState
   )
 
+  const [refreshApp, setRefreshApp] = useState(true)
+
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -47,13 +49,17 @@ const App = () => {
       })
       .then((res) => {
         if (res.data['loggedin']) {
+          console.log(res)
           setUserId(res.data['user_id']);
         }
       });
   }, []);
 
+  
 
-  return (
+
+  if (refreshApp) {
+    return (
     <ThemeProvider theme={theme}>
       <div className="App">
         {/* ROUTING */}
@@ -74,7 +80,11 @@ const App = () => {
         </Router>
       </div>
     </ThemeProvider>
-  );
+    );
+  } else {
+    return null
+  }
+
 };
 
 export default App;
