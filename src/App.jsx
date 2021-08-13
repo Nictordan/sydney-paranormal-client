@@ -21,6 +21,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import NavBar from './components/NavBar/NavBar';
 // Routing Components
 import { Home } from './components/Home/Home';
+import { About } from './components/About/About';
 import { LogIn } from './components/LogIn/LogIn';
 import { SignUp } from './components/SignUp/SignUp';
 import Pin from './components/Pin/Pin';
@@ -63,6 +64,7 @@ const App = () => {
             <Route path="/" exact >
               <Home store={store} dispatch={dispatch} />
             </Route>
+            <Route path="/about" component={About} />
             <Route path="/login" component={LogIn} />
             <Route path="/signup" component={SignUp} />
             <Route path={"/pins"} >

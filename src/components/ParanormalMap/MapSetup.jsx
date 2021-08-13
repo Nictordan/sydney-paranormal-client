@@ -24,8 +24,6 @@ const Map = (props) => {
   };
 
   const [viewport, setViewport] = useState({
-    height: '500px',
-    width: '50vw',
     latitude: mapCoordinates.sydney.latitude,
     longitude: mapCoordinates.sydney.longitude,
     zoom: 12,
@@ -55,13 +53,15 @@ const Map = (props) => {
   }, []);
 
   const navigationControls = {
-    right: 10,
-    top: 10,
+    right: 30,
+    top: 30,
   };
 
   return (
     <ReactMapGL
       {...viewport}
+      width="100%"
+      height="50vh"
       mapboxApiAccessToken={mapboxApiKey}
       mapStyle="mapbox://styles/nictordan/ckryyeqgzgcl817mbs5hil5se"
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
