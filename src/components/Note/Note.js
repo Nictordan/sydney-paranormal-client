@@ -41,7 +41,9 @@ const Note = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let token = JSON.parse(localStorage.getItem('token'));
-
+  
+    console.log(token)
+    console.log(props.userId)
     api
       .post('/api/comments', {
         headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
@@ -67,6 +69,7 @@ const Note = (props) => {
           >
             {note.description}
           </Typography>
+
 
           <Paper className="comment-container" style={{ width: '100%', marginBottom: 20, padding: 10 }}>
             <Typography variant="h6">Comments</Typography>

@@ -47,11 +47,13 @@ const App = () => {
       })
       .then((res) => {
         if (res.data['loggedin']) {
+          console.log(res)
           setUserId(res.data['user_id']);
         }
       });
   }, []);
 
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,7 +76,8 @@ const App = () => {
         </Router>
       </div>
     </ThemeProvider>
-  );
+    );
+  
 };
 
 export default App;

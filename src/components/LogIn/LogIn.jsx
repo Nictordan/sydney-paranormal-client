@@ -8,7 +8,7 @@ import { FormWrapper } from '../../styles/FormWrapper';
 
 import { TextField, Typography, Button } from '@material-ui/core';
 
-export const LogIn = () => {
+export const LogIn = (props) => {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({
     email: '',
@@ -24,6 +24,7 @@ export const LogIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     api
       .post('/api/login', {
