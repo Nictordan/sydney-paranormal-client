@@ -40,7 +40,9 @@ const Note = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let token = JSON.parse(localStorage.getItem('token'));
-
+  
+    console.log(token)
+    console.log(props.userId)
     api
       .post('/api/comments', {
         headers: { Authorization: `Bearer ${JSON.stringify(token)}` },
@@ -69,7 +71,7 @@ const Note = (props) => {
 
           <Paper style={{ width: 'auto', marginBottom: 20, padding: 10 }}>
             <Typography>Comments</Typography>
-            <Comments noteOpen={props.noteOpen} commentUser={props.userId} comments={comments} toggleCommentRefresh={toggleCommentRefresh}/>
+            <Comments noteOpen={props.noteOpen}  comments={comments} toggleCommentRefresh={toggleCommentRefresh}/>
             <form
               onSubmit={handleSubmit}
               style={{

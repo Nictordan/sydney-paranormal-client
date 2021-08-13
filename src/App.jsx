@@ -35,6 +35,8 @@ const App = () => {
     initialState
   )
 
+  const [refreshApp, setRefreshApp] = useState(true)
+
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -46,33 +48,39 @@ const App = () => {
       })
       .then((res) => {
         if (res.data['loggedin']) {
+          console.log(res)
           setUserId(res.data['user_id']);
         }
       });
   }, []);
 
+  
 
-  return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        {/* ROUTING */}
-        <Router>
-          {/* NAVBAR */}
-          <NavBar />
-          <Switch>
-            <Route path="/" exact >
-              <Home store={store} dispatch={dispatch} />
-            </Route>
-            <Route path="/login" component={LogIn} />
-            <Route path="/signup" component={SignUp} />
-            <Route path={"/pins"} >
-              <Pin userId={userId} store={store} dispatch={dispatch} />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    </ThemeProvider>
-  );
+  if (refreshApp) {
+    return (
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          {/* ROUTING */}
+          <Router>
+            {/* NAVBAR */}
+            <NavBar setRefreshApp={setRefreshApp}/>
+            <Switch>
+              <Route path="/" exact >
+                <Home store={store} dispatch={dispatch} />
+              </Route>
+              <Route path="/login" component={LogIn} />
+              <Route path="/signup" component={SignUp} />
+              <Route path={"/pins"} >
+                <Pin userId={userId} store={store} dispatch={dispatch} />
+              </Route>
+            </Switch>
+          </Router>
+        </div>
+      </ThemeProvider>
+    );
+  } else {
+    return null
+  }
 };
 
 export default App;

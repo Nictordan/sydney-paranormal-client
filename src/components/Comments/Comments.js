@@ -10,7 +10,7 @@ const DeleteButton =(props) => {
   const buttonUser = props.buttonUser
   let token = JSON.parse(localStorage.getItem('token'));
 
-  
+
   const toggleCommentRefresh = props.toggleCommentRefresh
   useEffect(() => {
     toggleCommentRefresh()
@@ -24,7 +24,6 @@ const DeleteButton =(props) => {
     .then((res) => {
       if (res.data['loggedin']) {
         if (res.data.user_id === buttonUser) {
-          console.log(res.data.user_id)
           setShowButton(true)
         }
       }
@@ -102,7 +101,7 @@ const Comments = (props) => {
           {comment.created_at}
         </Typography>
 
-        <DeleteButton commentId={comment.id} buttonUser={props.commentUser} toggleCommentRefresh={toggleCommentRefresh}/>
+        <DeleteButton commentId={comment.id} buttonUser={comment.user_id} toggleCommentRefresh={toggleCommentRefresh}/>
       </li>
     ));
 

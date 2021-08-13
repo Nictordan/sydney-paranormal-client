@@ -2,14 +2,16 @@ import './LogIn.css';
 
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import api from '../../api/api';
 import { FormWrapper } from '../../styles/FormWrapper';
 
 import { TextField, Typography, Button } from '@material-ui/core';
 
-export const LogIn = () => {
+export const LogIn = (props) => {
   const [redirect, setRedirect] = useState(false);
+  const [submit, setSubmit] = useState(false)
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -25,6 +27,7 @@ export const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setSubmit(true)
     api
       .post('/api/login', {
         headers: {
