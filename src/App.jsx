@@ -35,8 +35,6 @@ const App = () => {
     initialState
   )
 
-  const [refreshApp, setRefreshApp] = useState(true)
-
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
@@ -56,31 +54,28 @@ const App = () => {
 
   
 
-  if (refreshApp) {
-    return (
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          {/* ROUTING */}
-          <Router>
-            {/* NAVBAR */}
-            <NavBar setRefreshApp={setRefreshApp}/>
-            <Switch>
-              <Route path="/" exact >
-                <Home store={store} dispatch={dispatch} />
-              </Route>
-              <Route path="/login" component={LogIn} />
-              <Route path="/signup" component={SignUp} />
-              <Route path={"/pins"} >
-                <Pin userId={userId} store={store} dispatch={dispatch} />
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-      </ThemeProvider>
+  return (
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {/* ROUTING */}
+        <Router>
+          {/* NAVBAR */}
+          <NavBar />
+          <Switch>
+            <Route path="/" exact >
+              <Home store={store} dispatch={dispatch} />
+            </Route>
+            <Route path="/login" component={LogIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path={"/pins"} >
+              <Pin userId={userId} store={store} dispatch={dispatch} />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeProvider>
     );
-  } else {
-    return null
-  }
+  
 };
 
 export default App;
